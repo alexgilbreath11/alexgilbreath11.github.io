@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Spine — Alexander Gilbreath</title>
+<meta name="description" content="Click a vertebra to travel Alexander Gilbreath's build history end to end — Got Your Back, Disaster Classification, Acne Recognition, and a GPT built from scratch.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230b0e11'/%3E%3Ctext%20x='32'%20y='45'%20font-family='Georgia,serif'%20font-size='34'%20font-weight='700'%20text-anchor='middle'%20fill='%235980a6'%3EG%3C/text%3E%3C/svg%3E">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="_ds/industry-148c65f4-104d-43d8-a418-63bae21b2f5b/styles.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="_ds/industry-148c65f4-104d-43d8-a418-63bae21b2f5b/_ds_bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+  <script src="./image-slot.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { overflow-x: hidden; }
+    a { color: var(--color-accent); }
+    a:hover { color: var(--color-text); }
+    @keyframes cueBob { 0%,100% { transform: translateY(0); opacity:.35 } 50% { transform: translateY(9px); opacity:1 } }
+    @keyframes fadeUp { from { opacity:0; transform: translateY(16px) } to { opacity:1; transform: translateY(0) } }
+    @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+    @keyframes cueGlow {
+      0%,100% { box-shadow: 0 0 0 0 rgba(89,128,166,.42), 0 0 16px 2px rgba(89,128,166,.20); }
+      50% { box-shadow: 0 0 0 10px rgba(89,128,166,0), 0 0 30px 6px rgba(89,128,166,.42); }
+    }
+    @keyframes cueRing {
+      0% { transform: scale(.72); opacity:.85 }
+      100% { transform: scale(1.9); opacity:0 }
+    }
+  </style>
+</helmet>
+
+<canvas ref="{{ canvasRef }}" style="position:fixed; inset:0; width:100vw; height:100vh; display:block; z-index:0;"></canvas>
+
+<div style="position:fixed; inset:0; z-index:0; pointer-events:none; background: radial-gradient(120% 90% at 50% 42%, transparent 58%, color-mix(in srgb, var(--color-text) 6%, transparent) 100%);"></div>
+
+<sc-if value="{{ showCue }}" hint-placeholder-val="{{ true }}">
+  <div style="position:fixed; left:50%; bottom:5.4vh; transform:translateX(-50%); z-index:4; pointer-events:none; display:flex; align-items:center; gap:10px; padding:9px 16px 9px 12px; border:1px solid rgba(89,128,166,.55); background: color-mix(in srgb, var(--color-bg) 82%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: cueGlow 2.4s ease-in-out infinite, fadeIn .5s ease both;">
+    <span style="position:relative; width:12px; height:12px; flex:none; display:grid; place-items:center;">
+      <span style="position:absolute; inset:0; border:1px solid #5980a6; border-radius:50%; animation: cueRing 2.4s ease-out infinite;"></span>
+      <span style="width:6px; height:6px; background:#5980a6; border-radius:50%;"></span>
+    </span>
+    <span style="font-family:var(--font-heading); font-weight:600; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#cfe4f5;">Click the spine to see my projects</span>
+  </div>
+</sc-if>
+
+<sc-if value="{{ showHoverTip }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed; left:50%; bottom:5.4vh; transform:translateX(-50%); z-index:4; pointer-events:none; display:flex; align-items:center; gap:10px; padding:9px 16px; border:1px solid #5980a6; background:#1d1f20; animation: fadeIn .18s ease both;">
+    <span style="width:16px; height:3px; flex:none; background:#5980a6;"></span>
+    <span style="font-family:var(--font-heading); font-weight:600; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#cfe4f5;">{{ hoverLabel }}</span>
+    <span style="font-family:var(--font-heading); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.6);">Click to open project</span>
+  </div>
+</sc-if>
+
+<nav class="nav" style="position:fixed; top:0; left:0; right:0; z-index:5; background: color-mix(in srgb, var(--color-bg) 68%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-divider);">
+  <span class="nav-brand">VERTEBRA<span style="color:var(--color-accent);">.</span></span>
+  <a href="../index.html">Home</a>
+  <a href="#overview">Overview</a>
+  <a href="#story">About</a>
+  <a href="#why">Why I build</a>
+  <a href="#now">Currently</a>
+  <a href="../brain/brain-portfolio.dc.html">Brain</a>
+</nav>
+
+<aside style="position:fixed; right:2.4vw; top:50%; transform:translateY(-50%); z-index:4; display:flex; flex-direction:column; gap:12px; pointer-events:none;">
+  <div style="font-family:var(--font-heading); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 45%, transparent); writing-mode:vertical-rl; align-self:center; margin-bottom:6px;">Region</div>
+  <sc-for list="{{ gaugeItems }}" as="g" hint-placeholder-count="4">
+    <div style="display:flex; align-items:center; gap:9px; justify-content:flex-end;">
+      <span style="font-family:var(--font-heading); font-weight:600; font-size:12px; letter-spacing:.04em; color: {{ g.color }};">{{ g.label }}</span>
+      <span style="width:9px; height:9px; flex:none; background: {{ g.dot }}; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text) 35%, transparent);"></span>
+    </div>
+  </sc-for>
+</aside>
+
+<sc-for list="{{ panels }}" as="p" hint-placeholder-count="0">
+  <sc-if value="{{ p.open }}" hint-placeholder-val="{{ false }}">
+    <div style="box-sizing:border-box; position:fixed; left:3vw; top:58px; z-index:6; width:min(412px, 90vw); max-height:calc(100vh - 58px - 12vh); padding:8px; overflow-y:auto; overflow-x:hidden; pointer-events:auto;">
+      <div class="blueprint" style="position:relative; padding: var(--space-6); background: var(--color-bg); box-shadow: var(--shadow-lg); animation: fadeIn .3s ease both;">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:var(--space-4);">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <span style="display:flex; align-items:center; gap:8px; font-family:var(--font-heading); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--color-accent);">
+              <span style="width:16px; height:3px; background:var(--color-accent);"></span>{{ p.tag }}
+            </span>
+            <h3 style="font-size:30px; line-height:1; margin:0;">{{ p.name }}</h3>
+            <span style="font-family:var(--font-heading); font-size:13px; letter-spacing:.06em; color:color-mix(in srgb, var(--color-text) 50%, transparent);">{{ p.sub }}</span>
+          </div>
+          <button class="btn btn-icon" onClick="{{ closePanel }}" aria-label="Close" style="flex:none;">✕</button>
+        </div>
+        <sc-if value="{{ p.hasShots }}" hint-placeholder-val="{{ false }}">
+          <div style="margin: var(--space-4) 0;">
+            <figure class="blueprint" style="position:relative; margin:0; padding:0; border:1px solid var(--color-divider);">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              <sc-if value="{{ heroA }}" hint-placeholder-val="{{ true }}">
+                <img src="uploads/IMG_9473.jpg" alt="The finished Got Your Back enclosure lit up on its elastic harness" style="display:block; width:100%; height:214px; object-fit:cover;">
+              </sc-if>
+              <sc-if value="{{ heroB }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/IMG_9474.jpg" alt="Laser-cut enclosure halves, battery pack and Circuit Playground board laid out" style="display:block; width:100%; height:214px; object-fit:cover;">
+              </sc-if>
+              <sc-if value="{{ heroC }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/IMG_9469.jpg" alt="Board on the bench wired to a breadboard, angular data streaming on the laptop" style="display:block; width:100%; height:214px; object-fit:cover;">
+              </sc-if>
+              <sc-if value="{{ heroD }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/IMG_9472.jpg" alt="Assembling the sensor module by hand in the studio" style="display:block; width:100%; height:214px; object-fit:cover;">
+              </sc-if>
+              <figcaption style="font-family:var(--font-heading); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; padding:7px 9px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 55%, transparent);">{{ heroCaption }}</figcaption>
+            </figure>
+            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:7px; margin-top:7px;">
+              <sc-if value="{{ thumbA }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ pickA }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:none; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <div class="duotone" style="height:74px;">
+                    <img src="uploads/IMG_9473.jpg" alt="The finished Got Your Back enclosure lit up on its elastic harness" style="display:block; width:100%; height:74px; object-fit:cover;">
+                  </div>
+                  <span style="display:block; font-family:var(--font-heading); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; padding:5px 6px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">A — Built</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ thumbB }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ pickB }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:none; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <div class="duotone" style="height:74px;">
+                    <img src="uploads/IMG_9474.jpg" alt="Laser-cut enclosure halves, battery pack and Circuit Playground board laid out" style="display:block; width:100%; height:74px; object-fit:cover;">
+                  </div>
+                  <span style="display:block; font-family:var(--font-heading); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; padding:5px 6px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">B — Parts</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ thumbC }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ pickC }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:none; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <div class="duotone" style="height:74px;">
+                    <img src="uploads/IMG_9469.jpg" alt="Board on the bench wired to a breadboard, angular data streaming on the laptop" style="display:block; width:100%; height:74px; object-fit:cover;">
+                  </div>
+                  <span style="display:block; font-family:var(--font-heading); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; padding:5px 6px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">C — Bench</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ thumbD }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ pickD }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:none; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <div class="duotone" style="height:74px;">
+                    <img src="uploads/IMG_9472.jpg" alt="Assembling the sensor module by hand in the studio" style="display:block; width:100%; height:74px; object-fit:cover;">
+                  </div>
+                  <span style="display:block; font-family:var(--font-heading); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; padding:5px 6px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">D — Build</span>
+                </button>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ p.hasShots2 }}" hint-placeholder-val="{{ false }}">
+          <div style="margin: var(--space-4) 0;">
+            <figure class="blueprint" style="position:relative; margin:0; padding:0; border:1px solid var(--color-divider);">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              <sc-if value="{{ dcHeroA }}" hint-placeholder-val="{{ true }}">
+                <img src="uploads/IMG_9471.jpg" alt="Walking two visitors through the deck on a laptop at the showcase table" style="display:block; width:100%; height:214px; object-fit:cover;">
+              </sc-if>
+              <sc-if value="{{ dcHeroB }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/Screenshot%202026-08-11%20at%209.39.22%20PM.png" alt="The three-person project team standing behind laptops showing the comparison charts" style="display:block; width:100%; height:214px; object-fit:cover;">
+              </sc-if>
+              <sc-if value="{{ dcHeroC }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/Screenshot%202026-08-11%20at%209.30.33%20PM.png" alt="Title slide reading Disaster Classification, ACM AI Project" style="display:block; width:100%; height:214px; object-fit:cover;">
+              </sc-if>
+              <sc-if value="{{ dcHeroD }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/Screenshot%202026-08-11%20at%209.40.46%20PM.png" alt="Architecture slide describing four convolutional layers into two fully connected layers" style="display:block; width:100%; height:214px; object-fit:contain; background:var(--color-bg);">
+              </sc-if>
+              <sc-if value="{{ dcHeroE }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/Screenshot%202026-08-11%20at%209.40.18%20PM.png" alt="Results table with per-class precision, recall and F1 for the DenseCNN" style="display:block; width:100%; height:214px; object-fit:contain; background:#23272b;">
+              </sc-if>
+              <figcaption style="font-family:var(--font-heading); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; padding:7px 9px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 55%, transparent);">{{ dcCaption }}</figcaption>
+            </figure>
+            <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; margin-top:6px;">
+              <sc-if value="{{ dcThumbA }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ dcPickA }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:none; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <div class="duotone" style="height:62px;">
+                    <img src="uploads/IMG_9471.jpg" alt="Walking two visitors through the deck at the showcase table" style="display:block; width:100%; height:62px; object-fit:cover;">
+                  </div>
+                  <span style="display:block; font-family:var(--font-heading); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:4px 5px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">A — Demo</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ dcThumbB }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ dcPickB }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:none; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <div class="duotone" style="height:62px;">
+                    <img src="uploads/Screenshot%202026-08-11%20at%209.39.22%20PM.png" alt="The three-person project team behind their laptops" style="display:block; width:100%; height:62px; object-fit:cover;">
+                  </div>
+                  <span style="display:block; font-family:var(--font-heading); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:4px 5px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">B — Team</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ dcThumbC }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ dcPickC }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:none; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <img src="uploads/Screenshot%202026-08-11%20at%209.30.33%20PM.png" alt="Title slide" style="display:block; width:100%; height:62px; object-fit:cover;">
+                  <span style="display:block; font-family:var(--font-heading); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:4px 5px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">C — Title</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ dcThumbD }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ dcPickD }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:none; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <img src="uploads/Screenshot%202026-08-11%20at%209.40.46%20PM.png" alt="CNN architecture slide" style="display:block; width:100%; height:62px; object-fit:cover;">
+                  <span style="display:block; font-family:var(--font-heading); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:4px 5px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">D — CNN</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ dcThumbE }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ dcPickE }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:none; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <img src="uploads/Screenshot%202026-08-11%20at%209.40.18%20PM.png" alt="Per-class results slide" style="display:block; width:100%; height:62px; object-fit:cover;">
+                  <span style="display:block; font-family:var(--font-heading); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:4px 5px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">E — Results</span>
+                </button>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ p.hasShots3 }}" hint-placeholder-val="{{ false }}">
+          <div style="margin: var(--space-4) 0;">
+            <figure class="blueprint" style="position:relative; margin:0; padding:0; border:1px solid var(--color-divider); background:#fff;">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              <sc-if value="{{ acHeroA }}" hint-placeholder-val="{{ true }}">
+                <img src="uploads/acne-confusion.png" alt="Confusion matrix across the six acne classes, strong diagonal" style="display:block; width:100%; height:236px; object-fit:contain; background:#fff;">
+              </sc-if>
+              <sc-if value="{{ acHeroB }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/acne-accuracy.png" alt="Training versus validation accuracy across 30 epochs, both trending upward" style="display:block; width:100%; height:236px; object-fit:contain; background:#fff;">
+              </sc-if>
+              <sc-if value="{{ acHeroC }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/acne-loss.png" alt="Training versus validation loss across 30 epochs, both decreasing" style="display:block; width:100%; height:236px; object-fit:contain; background:#fff;">
+              </sc-if>
+              <sc-if value="{{ acHeroD }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/acne-f1.png" alt="Per-class F1 score bars ranging from 0.89 to 0.94" style="display:block; width:100%; height:236px; object-fit:contain; background:#fff;">
+              </sc-if>
+              <figcaption style="font-family:var(--font-heading); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; padding:7px 9px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 55%, transparent);">{{ acCaption }}</figcaption>
+            </figure>
+            <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; margin-top:6px;">
+              <sc-if value="{{ acThumbA }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ acPickA }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:#fff; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <img src="uploads/acne-confusion.png" alt="Confusion matrix" style="display:block; width:100%; height:62px; object-fit:contain;">
+                  <span style="display:block; font-family:var(--font-heading); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:4px 5px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">A — Matrix</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ acThumbB }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ acPickB }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:#fff; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <img src="uploads/acne-accuracy.png" alt="Accuracy curves" style="display:block; width:100%; height:62px; object-fit:contain;">
+                  <span style="display:block; font-family:var(--font-heading); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:4px 5px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">B — Accuracy</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ acThumbC }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ acPickC }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:#fff; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <img src="uploads/acne-loss.png" alt="Loss curves" style="display:block; width:100%; height:62px; object-fit:contain;">
+                  <span style="display:block; font-family:var(--font-heading); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:4px 5px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">C — Loss</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ acThumbD }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ acPickD }}" title="Show larger" style="display:block; margin:0; padding:0; border:1px solid var(--color-divider); background:#fff; cursor:pointer; text-align:left; font:inherit; transition: border-color .18s ease;" style-hover="border-color: var(--color-accent);">
+                  <img src="uploads/acne-f1.png" alt="Per-class F1 bars" style="display:block; width:100%; height:62px; object-fit:contain;">
+                  <span style="display:block; font-family:var(--font-heading); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:4px 5px; border-top:1px solid var(--color-divider); color:color-mix(in srgb, var(--color-text) 52%, transparent);">D — F1</span>
+                </button>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ p.noShots }}" hint-placeholder-val="{{ true }}">
+          <div style="position:relative; height:208px; margin: var(--space-4) 0; border:1px solid var(--color-divider);">
+            <image-slot id="{{ p.slot }}" shape="rect" placeholder="Drop a project image"></image-slot>
+          </div>
+        </sc-if>
+        <p style="font-size:14px; margin:0 0 var(--space-4); color:color-mix(in srgb, var(--color-text) 78%, transparent);">{{ p.summary }}</p>
+        <sc-if value="{{ p.hasStats }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:1px; margin:0 0 var(--space-4); background:var(--color-divider); border:1px solid var(--color-divider);">
+            <sc-for list="{{ p.stats }}" as="s" hint-placeholder-count="0">
+              <div style="background:var(--color-bg); padding:9px 8px 8px;">
+                <div style="font-family:var(--font-heading); font-weight:600; font-size:23px; line-height:1; color:#9dc2e0;">{{ s.value }}</div>
+                <div style="font-family:var(--font-heading); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; margin-top:5px; color:color-mix(in srgb, var(--color-text) 55%, transparent);">{{ s.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ p.hasSpec }}" hint-placeholder-val="{{ false }}">
+          <div class="blueprint" style="position:relative; padding:10px 12px; margin:0 0 var(--space-4); border:1px solid var(--color-divider);">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div style="font-family:var(--font-heading); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 48%, transparent); margin-bottom:7px;">Specification</div>
+            <sc-for list="{{ p.specs }}" as="sp" hint-placeholder-count="0">
+              <div style="display:flex; justify-content:space-between; gap:14px; padding:5px 0; border-top:1px solid var(--color-divider); font-size:12.5px;">
+                <span style="font-family:var(--font-heading); letter-spacing:.1em; text-transform:uppercase; font-size:11px; color:color-mix(in srgb, var(--color-text) 55%, transparent);">{{ sp.k }}</span>
+                <span style="text-align:right; color:#9dc2e0; font-weight:500;">{{ sp.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:4px; margin:0 0 var(--space-4);">
+            <div style="font-family:var(--font-heading); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 48%, transparent); margin-bottom:3px;">Forward pass — bottom to top</div>
+            <sc-for list="{{ p.stack }}" as="ly" hint-placeholder-count="0">
+              <div style="display:grid; grid-template-columns:38px 1fr; gap:10px; align-items:baseline; border:1px solid var(--color-divider); padding:8px 10px;">
+                <span style="font-family:var(--font-heading); font-weight:600; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--color-accent);">{{ ly.k }}</span>
+                <span>
+                  <span style="display:block; font-size:13px; line-height:1.3;">{{ ly.t }}</span>
+                  <span style="display:block; font-family:var(--font-heading); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; margin-top:2px; color:color-mix(in srgb, var(--color-text) 50%, transparent);">{{ ly.s }}</span>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <div style="display:flex; flex-direction:column; gap:var(--space-3); margin-bottom:var(--space-4);">
+          <sc-for list="{{ p.points }}" as="pt" hint-placeholder-count="0">
+            <div style="display:grid; grid-template-columns:88px 1fr; gap:10px; align-items:baseline; border-top:1px solid var(--color-divider); padding-top:9px;">
+              <span style="font-family:var(--font-heading); font-weight:600; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#9dc2e0;">{{ pt.label }}</span>
+              <span style="font-size:13.5px; line-height:1.45; color:color-mix(in srgb, var(--color-text) 80%, transparent);">{{ pt.text }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:7px; margin-bottom:var(--space-4);">
+          <sc-for list="{{ p.zones }}" as="z" hint-placeholder-count="0">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="width:10px; height:10px; flex:none; background: {{ z.color }};"></span>
+              <span style="font-family:var(--font-heading); font-weight:600; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; width:78px; flex:none;">{{ z.name }}</span>
+              <span style="font-size:12.5px; line-height:1.35; color:color-mix(in srgb, var(--color-text) 70%, transparent);">{{ z.rule }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ p.hasDeck }}" hint-placeholder-val="{{ false }}">
+          <a class="btn btn-secondary" href="https://docs.google.com/presentation/d/1d_FznERTh9qHjv7EgGSrb8GnYjetJvpy86nRollAyUw/edit?usp=sharing" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; margin-bottom:var(--space-4);">View the project deck ↗</a>
+        </sc-if>
+        <sc-if value="{{ p.hasDeck2 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:var(--space-4);">
+            <a class="btn btn-secondary" href="https://docs.google.com/presentation/d/11LVe5FhP7KmNMWM9fJxfahBn4oeXSZHmk5hJOfdFXOY/edit?usp=sharing" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px;">View the project deck ↗</a>
+            <a class="btn btn-secondary" href="https://www.kaggle.com/code/yelbuzz/xview2stem" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px;">Notebook on Kaggle ↗</a>
+          </div>
+        </sc-if>
+        <sc-if value="{{ p.hasPage }}" hint-placeholder-val="{{ false }}">
+          <a class="btn btn-secondary" href="uploads/gpt-from-scratch.html" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; margin-bottom:var(--space-4);">Read the full write-up ↗</a>
+        </sc-if>
+        <sc-if value="{{ p.hasReport }}" hint-placeholder-val="{{ false }}">
+          <a class="btn btn-secondary" href="uploads/Project_Report_-_Google_Docs.pdf" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; margin-bottom:var(--space-4);">Read the full project report ↗</a>
+        </sc-if>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <sc-for list="{{ p.chips }}" as="c" hint-placeholder-count="1">
+            <span class="tag tag-outline">{{ c.label }}</span>
+          </sc-for>
+          <span class="tag tag-neutral">{{ p.range }}</span>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</sc-for>
+
+<main style="position:relative; z-index:1; pointer-events:none;">
+
+  <section id="overview" style="box-sizing:border-box; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:84px 6vw;">
+    <div class="blueprint" style="pointer-events:auto; position:relative; padding: var(--space-8) var(--space-8); max-width:600px; background: color-mix(in srgb, var(--color-bg) 88%, transparent); animation: fadeUp .8s ease both;">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <span class="card-kicker" style="font-size:12px;">Interactive Portfolio · Fig. 01</span>
+      <h1 style="font-size: clamp(46px, 8vw, 92px); line-height:.94; margin:.2em 0 .35em;">EXPLORE MY<br>PROJECTS</h1>
+      <p style="font-size:17px; max-width:44ch; margin:0 auto; color:color-mix(in srgb, var(--color-text) 78%, transparent);">Four projects, mapped onto the column that got me building them. Scroll to rotate the model, then click any region to open its case study.</p>
+    </div>
+  </section>
+
+  <section id="story" style="min-height:100vh; display:flex; align-items:center; justify-content:flex-start; padding:0 6vw;">
+    <div class="blueprint" style="pointer-events:auto; position:relative; padding: var(--space-6); width:min(452px, 48vw); background: color-mix(in srgb, var(--color-bg) 80%, transparent); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div style="font-family:var(--font-heading); font-weight:600; font-size:64px; line-height:1; color:var(--color-accent-300);">01</div>
+      <span class="card-kicker">About me</span>
+      <h2 style="font-size:34px; margin:.15em 0 .4em;">It started with my own spine</h2>
+      <div style="display:flex; flex-direction:column; gap:var(--space-3); font-size:15px; line-height:1.55; color:color-mix(in srgb, var(--color-text) 80%, transparent);">
+        <p style="margin:0;">I grew up with <strong>scoliosis</strong>. It quietly took things from me — swimming, sports, the ordinary physical stuff my friends never had to think about — and it put me in chronic pain most days.</p>
+        <p style="margin:0;">The curve showed in how I stood, and kids noticed. Being made fun of for the way my own back held me up is a particular kind of hurt, and it's the reason none of this work is abstract to me.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" style="min-height:100vh; display:flex; align-items:center; justify-content:flex-end; padding:0 6vw;">
+    <div class="blueprint" style="pointer-events:auto; position:relative; padding: var(--space-6); width:min(452px, 48vw); background: color-mix(in srgb, var(--color-bg) 80%, transparent); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div style="font-family:var(--font-heading); font-weight:600; font-size:64px; line-height:1; color:var(--color-accent-300);">02</div>
+      <span class="card-kicker">Why I build</span>
+      <h2 style="font-size:34px; margin:.15em 0 .4em;">Got Your Back</h2>
+      <div style="display:flex; flex-direction:column; gap:var(--space-3); font-size:15px; line-height:1.55; color:color-mix(in srgb, var(--color-text) 80%, transparent);">
+        <p style="margin:0;">I've been seeing a chiropractor for over <strong>ten years</strong>. In that time I learned my own back — which positions cost me, which exercises give something back, how much of the pain is correctable before it becomes permanent.</p>
+        <p style="margin:0;">Got Your Back came out of that. I'm still building it through college, and still adding to the app around it, because the version of me who didn't know any of this deserved a device that noticed before the pain did.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gym" style="min-height:100vh; display:flex; align-items:center; justify-content:flex-start; padding:0 6vw;">
+    <div class="blueprint" style="pointer-events:auto; position:relative; padding: var(--space-6); width:min(452px, 48vw); background: color-mix(in srgb, var(--color-bg) 80%, transparent); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div style="font-family:var(--font-heading); font-weight:600; font-size:64px; line-height:1; color:var(--color-accent-300);">03</div>
+      <span class="card-kicker">The other half</span>
+      <h2 style="font-size:34px; margin:.15em 0 .4em;">What the gym gave back</h2>
+      <div style="display:flex; flex-direction:column; gap:var(--space-3); font-size:15px; line-height:1.55; color:color-mix(in srgb, var(--color-text) 80%, transparent);">
+        <p style="margin:0;">I used to be overweight, and I heard about it — <em>fat lard</em> and worse. Those names sat with me for years longer than the people who said them did.</p>
+        <p style="margin:0;">The gym is where I got to answer them. It's now one of the few places my back and my head both feel good, which is exactly why the health tools I build keep pointing there.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="now" style="min-height:100vh; display:flex; align-items:center; justify-content:flex-end; padding:0 6vw;">
+    <div class="blueprint" style="pointer-events:auto; position:relative; padding: var(--space-6); width:min(452px, 48vw); background: color-mix(in srgb, var(--color-bg) 80%, transparent); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div style="font-family:var(--font-heading); font-weight:600; font-size:64px; line-height:1; color:var(--color-accent-300);">04</div>
+      <span class="card-kicker">Currently</span>
+      <h2 style="font-size:34px; margin:.15em 0 .4em;">Building in stealth</h2>
+      <div style="display:flex; flex-direction:column; gap:var(--space-3); font-size:15px; line-height:1.55; color:color-mix(in srgb, var(--color-text) 80%, transparent);">
+        <p style="margin:0;">I'm helping develop a product at a stealth-stage company. I can't say much about it yet, but the shape is this: one place to log your <strong>nutrition</strong> and your <strong>lifts</strong>, so effort in the gym and effort in the kitchen finally read as one picture.</p>
+        <p style="margin:0;">I tested the AI nutrition scanner on myself before asking anyone else to trust it — <strong>down 7 lbs</strong>, lower body fat, strength still climbing. I only ship health tools I've been the first user of.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="close" style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 6vw;">
+    <div class="blueprint" style="pointer-events:auto; position:relative; padding: var(--space-8); max-width:560px; background: color-mix(in srgb, var(--color-bg) 74%, transparent); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <span class="card-kicker" style="font-size:12px;">Keep exploring</span>
+      <h2 style="font-size:44px; margin:.15em 0 .4em;">Four regions, four builds</h2>
+      <p style="font-size:16px; max-width:46ch; margin:0 auto var(--space-6); color:color-mix(in srgb, var(--color-text) 80%, transparent);">Wearable biofeedback, disaster classification, acne recognition, and a transformer built from scratch — click any region of the column to open one.</p>
+      <a class="btn btn-primary" href="#overview">Back to top ↑</a>
+    </div>
+  </section>
+
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;},&quot;spineColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#e7ddc8&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#e7ddc8&quot;,&quot;#d8c39a&quot;,&quot;#efe7d6&quot;,&quot;#dcc7a6&quot;],&quot;section&quot;:&quot;Model&quot;},&quot;goldColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#5980a6&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#5980a6&quot;,&quot;#749dc4&quot;,&quot;#416180&quot;,&quot;#b5d9fd&quot;],&quot;section&quot;:&quot;Model&quot;},&quot;opacity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.3,&quot;max&quot;:1,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Model&quot;},&quot;openDegrees&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:195,&quot;min&quot;:45,&quot;max&quot;:320,&quot;step&quot;:5,&quot;unit&quot;:&quot;°&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Model&quot;},&quot;showProcesses&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Model&quot;},&quot;showCord&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Model&quot;}}">
+class Component extends DCLogic {
+  canvasRef = React.createRef();
+  state = { activeRegion: 0, selected: null, hover: null, everClicked: false, heroShot: 0, dcShot: 0 };
+  scrollProgress = 0;
+  curRot = 0;
+  hoverRegion = null;
+  proxies = [];
+  processMeshes = [];
+
+  componentDidMount() {
+    this.scrollProgress = 0;
+    this.onScroll = this.onScroll.bind(this);
+    this.onResize = this.onResize.bind(this);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    this._tries = 0;
+    this._wait = setInterval(() => {
+      if (window.THREE) { clearInterval(this._wait); this.init(); }
+      else if (++this._tries > 120) clearInterval(this._wait);
+    }, 40);
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    clearInterval(this._wait);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    if (this.renderer) this.renderer.dispose();
+  }
+
+  onScroll() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? window.scrollY / max : 0;
+    this.scrollProgress = Math.min(1, Math.max(0, p));
+    const region = Math.min(3, Math.floor(this.scrollProgress * 4.0));
+    if (region !== this.state.activeRegion) this.setState({ activeRegion: region });
+  }
+
+  // clicking a region carries the page to that region's scroll position
+  scrollToRegion(i) {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (max <= 0) return;
+    window.scrollTo({ top: max * ((i + 0.5) / 4), behavior: 'smooth' });
+  }
+
+  onResize() {
+    if (!this.renderer) return;
+    const w = window.innerWidth, h = window.innerHeight;
+    this.renderer.setSize(w, h, false);
+    this.fit(w, h);
+  }
+
+  // frame the whole column with margin, and decide how far it may slide sideways
+  fit(w, h) {
+    const T = window.THREE;
+    this.camera.aspect = w / h;
+    const halfFov = (42 * Math.PI / 180) / 2;
+    // column half-extent incl. processes, plus headroom for the fixed nav
+    const dV = (5.8 * 1.22) / Math.tan(halfFov);
+    const dH = 2.6 / (Math.tan(halfFov) * this.camera.aspect);
+    this.camera.position.set(0, 0, Math.max(dV, dH));
+    this.camera.lookAt(0, 0, 0);
+    this.camera.updateProjectionMatrix();
+  }
+
+  init() {
+    const T = window.THREE;
+    const canvas = this.canvasRef.current;
+    if (!canvas) return;
+    const w = window.innerWidth, h = window.innerHeight;
+
+    this.scene = new T.Scene();
+    this.camera = new T.PerspectiveCamera(42, w / h, 0.1, 100);
+    this.fit(w, h);
+
+    this.renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.renderer.setSize(w, h, false);
+    this.renderer.toneMapping = T.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 1.15;
+
+    this.renderer.toneMappingExposure = 1.02;
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = T.PCFSoftShadowMap;
+    this.scene.add(new T.HemisphereLight(0xf6f2e8, 0xa89f8c, 0.42));
+    const key = new T.DirectionalLight(0xfff4e4, 1.5);
+    key.position.set(6, 8, 6);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    const sc = key.shadow.camera;
+    sc.left = -8; sc.right = 8; sc.top = 8; sc.bottom = -8; sc.near = 0.5; sc.far = 32;
+    key.shadow.bias = -0.0007; key.shadow.radius = 2.5;
+    this.scene.add(key);
+    const fill = new T.DirectionalLight(0xdfe6ef, 0.26); fill.position.set(-7, -1.5, 4); this.scene.add(fill);
+    const rim = new T.DirectionalLight(0xffffff, 0.46); rim.position.set(-2, 3, -8); this.scene.add(rim);
+    const under = new T.DirectionalLight(0xe8d9c2, 0.16); under.position.set(0, -8, 2); this.scene.add(under);
+
+    this.raycaster = new T.Raycaster();
+    this.pointer = new T.Vector2(-2, -2);
+    canvas.addEventListener('pointermove', e => {
+      this.pointer.set((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1);
+    });
+    canvas.addEventListener('pointerleave', () => this.pointer.set(-2, -2));
+    canvas.addEventListener('click', () => {
+      if (this.hoverRegion == null) return;
+      const r = this.hoverRegion;
+      this.setState({ selected: r, everClicked: true });
+      this.scrollToRegion(r);
+    });
+
+    this.buildSpine(T);
+    this.animate = this.animate.bind(this);
+    this.animate();
+  }
+
+  makeBoneTexture(T) {
+    const S = 512;
+    const c = document.createElement('canvas'); c.width = c.height = S;
+    const g = c.getContext('2d');
+    // near-white base so the live spineColor tint multiplies through cleanly
+    g.fillStyle = '#f3ede1'; g.fillRect(0, 0, S, S);
+    // broad mottling — soft light/dark blotches for uneven bone surface
+    for (let i = 0; i < 260; i++) {
+      const x = Math.random() * S, y = Math.random() * S, rad = 8 + Math.random() * 46;
+      const dark = Math.random() < 0.5;
+      const gr = g.createRadialGradient(x, y, 0, x, y, rad);
+      gr.addColorStop(0, dark ? 'rgba(120,96,60,0.10)' : 'rgba(255,252,244,0.12)');
+      gr.addColorStop(1, 'rgba(0,0,0,0)');
+      g.fillStyle = gr; g.beginPath(); g.arc(x, y, rad, 0, 7); g.fill();
+    }
+    // fine porous speckle — the reddish-brown flecks of trabecular bone
+    for (let i = 0; i < 5200; i++) {
+      const x = Math.random() * S, y = Math.random() * S, rad = 0.4 + Math.random() * 1.7;
+      const r = Math.random();
+      g.fillStyle = r < 0.62 ? `rgba(140,104,64,${0.10 + Math.random() * 0.22})`
+                  : r < 0.85 ? `rgba(96,66,38,${0.10 + Math.random() * 0.2})`
+                             : `rgba(255,250,238,${0.14 + Math.random() * 0.22})`;
+      g.beginPath(); g.arc(x, y, rad, 0, 7); g.fill();
+    }
+    const tex = new T.CanvasTexture(c);
+    tex.wrapS = tex.wrapT = T.RepeatWrapping;
+    tex.repeat.set(2, 2);
+    tex.anisotropy = 4;
+    return tex;
+  }
+
+  buildSpine(T) {
+    this.spine = new T.Group();
+    const bone = this.props.spineColor ?? '#d8c39a';
+    const opq = this.props.opacity ?? 1;
+
+    const boneTex = this.makeBoneTexture(T);
+    // matte bone with porous surface texture + subtle relief
+    this.bodyMat = new T.MeshStandardMaterial({ color: new T.Color(bone), map: boneTex, bumpMap: boneTex, bumpScale: 0.012, roughness: 0.78, metalness: 0.0, transparent: opq < 1, opacity: opq });
+    this.processMat = this.bodyMat;
+    // one material per clickable region so each can glow independently
+    this.regionMats = [0, 1, 2, 3, 4].map(() => this.bodyMat.clone());
+    this.pickMat = new T.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false, colorWrite: false });
+    // pale pink cartilage discs
+    this.discMat = new T.MeshStandardMaterial({ color: 0xe7cfd2, roughness: 0.5, metalness: 0.02, transparent: opq < 1, opacity: opq });
+    this.discMats = [this.discMat];
+    this.cordMat = new T.MeshStandardMaterial({ color: 0xe9dcc0, roughness: 0.6, metalness: 0.0 });
+    this.haloMat = new T.MeshBasicMaterial({ visible: false });
+
+    const N = 24;
+    const nodes = [];
+    for (let i = 0; i < N; i++) {
+      const t = i / (N - 1);
+      const y = 4.3 - t * 8.6;
+      const z = 0.9 * Math.sin((t * 2.05 - 0.12) * Math.PI);
+      const r = 0.30 + t * 0.34;
+      nodes.push({ y, z, r, t });
+    }
+
+    for (let i = 0; i < N; i++) {
+      const n = nodes[i];
+      const v = new T.Group();
+      v.position.set(0, n.y, n.z);
+      // tangent tilt
+      const prev = nodes[Math.max(0, i - 1)], next = nodes[Math.min(N - 1, i + 1)];
+      const dz = next.z - prev.z, dy = next.y - prev.y;
+      v.rotation.x = -Math.atan2(dz, Math.abs(dy) || 1) * 0.85;
+
+      this.curRegion = i < 7 ? 0 : i < 19 ? 1 : 2;
+      this.curMat = this.regionMats[this.curRegion];
+      this.makeVertebra(T, v, n, i);
+
+      // invisible pick proxy covering the whole vertebra incl. processes
+      const px = new T.Mesh(new T.SphereGeometry(n.r * 1.15 + 0.42, 10, 8), this.pickMat);
+      px.position.set(0, 0, -n.r * 0.55);
+      px.userData.region = this.curRegion;
+      v.add(px); this.proxies.push(px);
+
+      this.spine.add(v);
+
+      // disc to next vertebra
+      if (i < N - 1) {
+        const nx = nodes[i + 1];
+        const dm = this.discMats[i % this.discMats.length];
+        const dr = (n.r + nx.r) / 2;
+        const dprof = [[0.5,-0.5],[0.95,-0.5],[1.03,-0.32],[1.05,0],[1.03,0.32],[0.95,0.5],[0.5,0.5]]
+          .map(p => new T.Vector2(Math.max(0.002, p[0] * dr), p[1] * 0.17));
+        const disc = new T.Mesh(new T.LatheGeometry(dprof, 40), dm);
+        disc.scale.z = 0.86;
+        disc.position.set(0, (n.y + nx.y) / 2, (n.z + nx.z) / 2 + 0.05 * dr);
+        disc.rotation.x = v.rotation.x;
+        disc.castShadow = true; disc.receiveShadow = true;
+        this.spine.add(disc);
+      }
+    }
+
+    this.makeSacrum(T, nodes[N - 1]);
+
+    // spinal cord through the canal (offset behind bodies)
+    const pts = nodes.map(n => new T.Vector3(0, n.y, n.z - n.r * 0.55));
+    const curve = new T.CatmullRomCurve3(pts);
+    this.cordMesh = new T.Mesh(new T.TubeGeometry(curve, 80, 0.075, 10, false), this.cordMat);
+    this.spine.add(this.cordMesh);
+
+    this.spine.position.y = 0.95;
+    this.scene.add(this.spine);
+  }
+
+  // fused sacrum wedge + tapering coccyx, each its own clickable region
+  makeSacrum(T, last) {
+    const topY = last.y - 0.34, topZ = last.z;
+    const sMat = this.regionMats[3];
+    const sac = new T.Group();
+    sac.position.set(0, topY - 0.52, topZ + 0.20);
+    sac.rotation.x = 0.34;
+    // taller than it is wide, as a real sacrum is
+    const raw = [[0.26,-0.5],[0.80,-0.47],[1.0,-0.26],[1.0,0.18],[0.76,0.42],[0.32,0.5]];
+    const H = 1.72, RX = 0.80, RZ = 0.42;
+    const prof = raw.map(p => new T.Vector2(Math.max(0.002, p[0] * 0.95), p[1] * H));
+    // sample the lathe radius at a local y so surface details can follow the taper
+    const radAt = y => {
+      for (let k = 0; k < prof.length - 1; k++) {
+        const a = prof[k], b = prof[k + 1];
+        if (y >= a.y && y <= b.y) {
+          const f = (y - a.y) / ((b.y - a.y) || 1);
+          return a.x + f * (b.x - a.x);
+        }
+      }
+      return prof[prof.length - 1].x;
+    };
+    const wedge = new T.Mesh(new T.LatheGeometry(prof, 40), sMat);
+    wedge.scale.set(RX, 1, RZ);
+    wedge.castShadow = true; wedge.receiveShadow = true;
+    sac.add(wedge);
+    // transverse ridges marking the fused segments, with paired foramina bumps
+    for (let k = 0; k < 4; k++) {
+      const yy = 0.52 - k * 0.42;
+      const ra = radAt(yy);
+      const ridge = new T.Mesh(new T.TorusGeometry(ra * 0.95, 0.038, 8, 24), sMat);
+      // scale is applied before rotation, so swap Y/Z to land the ellipse on X/Z
+      ridge.rotation.x = Math.PI / 2; ridge.scale.set(RX, RZ, 1);
+      ridge.position.set(0, yy, 0);
+      ridge.castShadow = true; sac.add(ridge);
+      for (const s of [-1, 1]) {
+        const fo = new T.Mesh(new T.SphereGeometry(0.078, 10, 8), sMat);
+        fo.scale.set(1, 0.72, 0.4);
+        fo.position.set(s * ra * RX * 0.5, yy + 0.06, ra * RZ * 0.72);
+        sac.add(fo);
+      }
+    }
+    // alae — the wings that meet the pelvis
+    for (const s of [-1, 1]) {
+      const ala = new T.Mesh(new T.SphereGeometry(0.40, 16, 12), sMat);
+      ala.scale.set(1.05, 0.44, 0.30);
+      ala.position.set(s * 0.52, 0.50, -0.02);
+      ala.castShadow = true; ala.receiveShadow = true; sac.add(ala);
+    }
+    const sPx = new T.Mesh(new T.SphereGeometry(1.15, 10, 8), this.pickMat);
+    sPx.userData.region = 3; sac.add(sPx); this.proxies.push(sPx);
+    this.spine.add(sac);
+
+    // coccyx — four shrinking segments curving anteriorly
+    const cMat = this.regionMats[4];
+    const cx = new T.Group();
+    // articulates directly with the sacrum's lower border
+    cx.position.set(0, topY - 1.46, topZ + 0.60);
+    for (let k = 0; k < 4; k++) {
+      const rr = 0.235 - k * 0.040;
+      const seg = new T.Mesh(new T.SphereGeometry(rr, 14, 10), cMat);
+      seg.scale.set(1.1, 1.0, 0.66);
+      seg.position.set(0, -k * 0.20, 0.05 + k * 0.07);
+      seg.castShadow = true; seg.receiveShadow = true;
+      cx.add(seg);
+    }
+    this.spine.add(cx);
+  }
+
+  // deterministic per-vertebra jitter so no two bones are identical
+  jit(i, k) {
+    const x = Math.sin(i * 12.9898 + k * 78.233) * 43758.5453;
+    return (x - Math.floor(x)) * 2 - 1;
+  }
+
+  tube(T, ptsArr, rad, seg) {
+    const curve = new T.CatmullRomCurve3(ptsArr.map(p => new T.Vector3(p[0], p[1], p[2])));
+    return new T.TubeGeometry(curve, seg || 20, rad, 12, false);
+  }
+
+  addBone(T, v, mesh, isProcess) {
+    mesh.castShadow = true; mesh.receiveShadow = true;
+    v.add(mesh);
+    if (isProcess) this.processMeshes.push(mesh);
+    return mesh;
+  }
+
+  makeVertebra(T, v, n, i) {
+    const r = n.r, t = n.t, bh = 0.32 + t * 0.16;
+    const bone = this.curMat || this.bodyMat;
+    const J = k => this.jit(i, k);
+
+    // vertebral body — waisted drum, concave sides, flared endplate rims
+    const prof = [
+      [0.52,-0.50],[0.86,-0.50],[0.99,-0.455],[1.0,-0.40],[0.90,-0.30],
+      [0.835,-0.15],[0.815,0],[0.835,0.15],[0.90,0.30],
+      [1.0,0.40],[0.99,0.455],[0.86,0.50],[0.52,0.50]
+    ];
+    const pts = prof.map(p => new T.Vector2(Math.max(0.002, p[0] * r * (1 + J(1) * 0.03)), p[1] * bh));
+    const body = this.addBone(T, v, new T.Mesh(new T.LatheGeometry(pts, 48), bone));
+    body.scale.z = 0.86; body.position.z = 0.05 * r;
+    const halo = new T.Mesh(new T.LatheGeometry(pts, 18), this.haloMat);
+    halo.scale.set(1.13, 1.03, 1.13 * 0.86); halo.position.z = body.position.z;
+    v.add(halo);
+
+    const canalR = r * 0.5, cz = -(0.5 * r + canalR * 0.6);
+
+    // pedicles — short thick struts from the body back to the lamina
+    for (const s of [-1, 1]) {
+      const ped = this.addBone(T, v, new T.Mesh(this.tube(T, [
+        [s * canalR * 0.60, 0, -0.30 * r],
+        [s * canalR * 0.86, 0.01, cz + canalR * 0.45],
+        [s * canalR * 0.92, 0.0, cz + canalR * 0.05]
+      ], r * 0.145, 12), bone));
+      ped.scale.y = 1.25;
+    }
+
+    // laminae — the two flat plates sweeping posteriorly to meet at the midline
+    for (const s of [-1, 1]) {
+      const lam = this.addBone(T, v, new T.Mesh(this.tube(T, [
+        [s * canalR * 0.92, 0, cz + canalR * 0.05],
+        [s * canalR * 0.80, -0.01, cz - canalR * 0.55],
+        [s * canalR * 0.34, -0.02, cz - canalR * 0.95],
+        [0, -0.025, cz - canalR * 1.05]
+      ], r * 0.135, 18), bone));
+      lam.scale.y = 1.5;
+    }
+
+    // articular facets — angled oval joint surfaces, superior and inferior
+    for (const s of [-1, 1]) for (const dy of [1, -1]) {
+      const fac = this.addBone(T, v, new T.Mesh(new T.SphereGeometry(r * 0.21, 18, 14), bone), true);
+      fac.scale.set(0.62, 1.05, 0.9);
+      fac.rotation.x = dy * 0.42;
+      fac.position.set(s * canalR * 0.95, dy * (bh * 0.62 + 0.02), cz + canalR * 0.05 + J(dy + 3) * 0.01);
+      // slim connecting neck up to the facet
+      const nk = this.addBone(T, v, new T.Mesh(new T.CylinderGeometry(r * 0.12, r * 0.14, bh * 0.6, 10), bone), true);
+      nk.position.set(s * canalR * 0.93, dy * bh * 0.34, cz + canalR * 0.06);
+    }
+
+    // transverse processes — tapering lateral wings that sweep back with bulbous tips
+    const tpLen = (0.40 + t * 0.16) * (1 + J(5) * 0.06);
+    for (const s of [-1, 1]) {
+      const wing = this.addBone(T, v, new T.Mesh(this.tube(T, [
+        [s * canalR * 0.85, 0.01, cz + canalR * 0.1],
+        [s * (canalR + tpLen * 0.45), 0.035, cz - canalR * 0.12],
+        [s * (canalR + tpLen), 0.05, cz - canalR * 0.42]
+      ], r * 0.135, 16), bone), true);
+      wing.scale.y = 0.82;
+      const tip = this.addBone(T, v, new T.Mesh(new T.SphereGeometry(r * 0.155, 16, 12), bone), true);
+      tip.scale.set(1.1, 0.78, 0.92);
+      tip.position.set(s * (canalR + tpLen), 0.05, cz - canalR * 0.42);
+    }
+
+    // spinous process — a thin blade curving posteriorly and downward, thickened tip
+    const spLen = (0.50 + Math.sin(Math.min(1, t * 1.1) * Math.PI) * 0.46) * (1 + J(7) * 0.07);
+    const blade = this.addBone(T, v, new T.Mesh(this.tube(T, [
+      [0, -0.03, cz - canalR * 1.0],
+      [0, -0.13 - spLen * 0.10, cz - canalR - spLen * 0.42],
+      [0, -0.26 - spLen * 0.24, cz - canalR - spLen * 0.86]
+    ], r * 0.30, 20), bone), true);
+    blade.scale.x = 0.40;
+    const spTip = this.addBone(T, v, new T.Mesh(new T.SphereGeometry(r * 0.26, 16, 12), bone), true);
+    spTip.scale.set(0.44, 0.78, 1.0);
+    spTip.position.set(0, -0.26 - spLen * 0.24, cz - canalR - spLen * 0.86);
+  }
+
+  animate() {
+    this._raf = requestAnimationFrame(this.animate);
+    if (!this.spine) return;
+    // open turn: ease from a near-posterior 3/4 view around to a lateral profile
+    const sweep = (this.props.openDegrees ?? 120) * Math.PI / 180;
+    const startYaw = 0.18;
+    const eased = this.scrollProgress * this.scrollProgress * (3 - 2 * this.scrollProgress);
+    const target = startYaw - eased * sweep;
+    this.curRot += (target - this.curRot) * 0.08;
+    this.spine.rotation.y = this.curRot;
+    this.spine.rotation.z = Math.sin(this.scrollProgress * Math.PI) * 0.04;
+
+    const col = this.props.spineColor ?? '#d8c39a';
+    const opq = this.props.opacity ?? 1;
+    const T = window.THREE;
+
+    // pick the region under the cursor off low-poly proxies
+    if (this.raycaster && this.proxies) {
+      this.raycaster.setFromCamera(this.pointer, this.camera);
+      const hits = this.raycaster.intersectObjects(this.proxies, false);
+      const hr = hits.length ? hits[0].object.userData.region : null;
+      if (hr !== this.hoverRegion) {
+        this.hoverRegion = hr;
+        const c = this.canvasRef.current;
+        if (c) c.style.cursor = hr != null ? 'pointer' : 'default';
+        this.setState({ hover: hr });
+      }
+    }
+
+    // gold glow eases in on hover only, and holds full on the selected region
+    const gold = this._gold || (this._gold = new T.Color());
+    gold.set(this.props.goldColor ?? '#5980a6');
+    for (let ri = 0; ri < this.regionMats.length; ri++) {
+      const m = this.regionMats[ri];
+      const on = ri === this.hoverRegion ? 1 : 0;
+      m.__k = (m.__k ?? 0) + (on - (m.__k ?? 0)) * 0.09;
+      m.color.set(col).lerp(gold, m.__k * 0.62);
+      m.emissive.copy(gold).multiplyScalar(m.__k * 0.42);
+      m.transparent = opq < 1; m.opacity = opq;
+    }
+    this.discMat.transparent = opq < 1; this.discMat.opacity = opq;
+    const showP = this.props.showProcesses ?? true;
+    for (const m of this.processMeshes) m.visible = showP;
+    if (this.cordMesh) this.cordMesh.visible = this.props.showCord ?? true;
+
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  renderVals() {
+    const active = this.state.activeRegion;
+    const hov = this.state.hover;
+    const labels = ['Cervical', 'Thoracic', 'Lumbar', 'Sacrum'];
+    // gold is reserved for hover/selection; scroll position reads in steel
+    const gaugeItems = labels.map((label, i) => {
+      const lit = i === hov;
+      return {
+        label,
+        color: lit ? 'var(--color-accent-300)'
+          : i === active ? '#9dc2e0'
+          : 'color-mix(in srgb, var(--color-text) 32%, transparent)',
+        dot: lit ? 'var(--color-accent-300)' : i === active ? 'var(--color-accent)' : 'transparent',
+      };
+    });
+    const regionRows = [
+      { name: 'Cervical', detail: 'Neck — most mobile', count: '7' },
+      { name: 'Thoracic', detail: 'Anchors the ribs', count: '12' },
+      { name: 'Lumbar', detail: 'Lower back — load-bearing', count: '5' },
+      { name: 'Sacrum', detail: 'Fused, joins the pelvis', count: '5' },
+    ];
+    const gold = this.props.goldColor ?? '#5980a6';
+    const sel = this.state.selected;
+    const projectMeta = [
+      { range: 'C1 – C7', slot: 'proj-cervical', tag: 'Project slot 01' },
+      { range: 'T1 – T12', slot: 'proj-thoracic', tag: 'Project slot 02' },
+      { range: 'L1 – L5', slot: 'proj-lumbar', tag: 'Project slot 03' },
+      { range: 'S1 – S5', slot: 'proj-sacrum', tag: 'Project slot 04' },
+    ];
+    const projects = {
+      0: {
+        tag: 'Project 01 · Wearable biofeedback',
+        shots: true,
+        deck: true,
+        name: 'Got Your Back',
+        sub: 'Wearable system for postural correction',
+        summary: 'A wearable biofeedback device that monitors spinal alignment and delivers real-time postural correction — built on an Adafruit microcontroller with a portable power architecture to ease chronic back pain and support ergonomic health.',
+        points: [
+          { label: 'Hardware', text: 'Custom ergonomic enclosure: a precision laser-cut acrylic chassis with a 3D CAD-modelled housing encapsulating the board and sensors.' },
+          { label: 'Firmware', text: 'Core data-processing firmware in Python for real-time angular acquisition, plus a companion mobile app rendering the spine live to track biometrics over time.' },
+          { label: 'Genesis', text: 'Driven by firsthand experience managing scoliosis — years of clinical observation and pain management pointed to proactive correction as the accessible, non-invasive lever.' },
+        ],
+        zones: [
+          { name: 'Yellow', color: '#d9a833', rule: '10s of suboptimal posture → pre-alert grace period' },
+          { name: 'Red', color: '#a8422f', rule: '5s past the angular threshold → haptic buzz' },
+          { name: 'Green', color: '#4d7a52', rule: 'Return to alignment → confirming chime' },
+        ],
+        chips: ['Adafruit', 'Python', 'CAD', 'Laser-cut acrylic', 'Haptics'],
+      },
+      1: {
+        tag: 'Project 02 · Computer vision',
+        name: 'Disaster Classification',
+        sub: 'Deep CNN damage scoring from satellite imagery',
+        deck2: true,
+        shots2: true,
+        summary: 'A classification model that predicts the intensity of natural-disaster damage from satellite imagery, built with ACM AI Project Teams. If you can tell which areas take the worst damage, you can prioritise those communities before the next event.',
+        points: [
+          { label: 'Dataset', text: 'xBD — 5,000+ paired before/after satellite captures across wildfires, hurricanes, floods and tsunamis, split 80/20 train–test.' },
+          { label: 'Model', text: 'Four convolutional layers pool the image down, then two fully connected layers make the damage-class call — benchmarked against a ResNet-18 baseline and a Vision Transformer.' },
+          { label: 'Evaluation', text: 'Measured against random guessing (~25% across four classes) and a majority-class baseline that always answers "no damage" — high accuracy, zero learning.' },
+          { label: 'Findings', text: 'Severity clusters by disaster type: earthquakes and floods stay low, Harvey and Florence skew severe, the Santa Rosa Wildfire tops the set — so severity itself is a useful feature.' },
+        ],
+        zones: [
+          { name: 'No damage', color: '#4d7a52', rule: 'The majority class — 60–70% of labelled buildings' },
+          { name: 'Minor', color: '#d9a833', rule: 'Visible but limited structural impact' },
+          { name: 'Major', color: '#c07a2c', rule: 'Significant structural damage' },
+          { name: 'Destroyed', color: '#a8422f', rule: 'Total loss' },
+        ],
+        chips: ['CNN', 'xBD', 'ResNet-18', 'Vision Transformer', 'Class imbalance'],
+      },
+      2: {
+        tag: 'Project 03 · Medical image classification',
+        name: 'Acne Recognition',
+        sub: 'Six-class acne typing with a fine-tuned ResNet-50',
+        shots3: true,
+        report: true,
+        summary: 'Acne hits 12–24 year-olds hardest, and most of them do not know which type they have — so they buy products built for a different condition and make it worse. We trained a ResNet-50 to name the type from a single photo, across six classes, at 90.94% test accuracy.',
+        points: [
+          { label: 'Dataset', text: '1,757 Roboflow images across blackheads, cysts, nodules, papules, pustules and whiteheads — pre-split 1,225 / 260 / 270 and near-perfectly balanced, ~200 samples per class in training.' },
+          { label: 'Preprocessing', text: 'Random horizontal and vertical flips plus rotations up to 30°, resized to 224×224 and normalised on ImageNet statistics for stable transfer.' },
+          { label: 'Two-phase', text: 'Phase one froze the backbone and trained only a new 6-class head for 30 epochs (~50% validation) so large gradients could not wreck the pretrained weights; phase two unfroze everything for 30 more.' },
+          { label: 'Baselines', text: 'A ResNet-18 run stalled at ~42% and a from-scratch CNN was never viable on 1,757 images — the full two-phase approach more than doubled the baseline.' },
+          { label: 'Where it breaks', text: 'Cysts and nodules trade places in the confusion matrix; both are inflamed and look alike. Papules top out at 0.94 F1, cysts and whiteheads sit lowest at 0.89.' },
+          { label: 'Next', text: 'More data on the confused classes, a front end that takes a photo directly, and full-face inputs instead of cropped close-ups.' },
+        ],
+        stats: [
+          { value: '90.94%', label: 'Test accuracy' },
+          { value: '1,757', label: 'Images' },
+          { value: '6', label: 'Acne classes' },
+          { value: '0.94', label: 'Best class F1' },
+        ],
+        zones: [
+          { name: 'Papules', color: '#4d7a52', rule: 'F1 0.94 — the cleanest class in the set' },
+          { name: 'Blackheads', color: '#5980a6', rule: 'F1 0.91 — 193 of 205 called correctly' },
+          { name: 'Nodules', color: '#c07a2c', rule: 'F1 0.91 — leaks into cysts both ways' },
+          { name: 'Cysts', color: '#a8422f', rule: 'F1 0.89 — hardest, confused with nodules' },
+        ],
+        chips: ['PyTorch', 'ResNet-50', 'Transfer learning', 'Roboflow', 'Confusion analysis'],
+      },
+      3: {
+        tag: 'Project 04 · Language modelling',
+        name: 'GPT From Scratch',
+        sub: 'A 30M-parameter decoder-only transformer, hand-built',
+        page: true,
+        summary: 'I implemented the transformer architecture behind modern LLMs myself in PyTorch — embeddings, multi-head causal self-attention, MLP blocks, layer norm — then trained a 30-million-parameter model to write Shakespeare. The whole pipeline, raw text to generated dialogue, on my own laptop.',
+        stats: [
+          { value: '30M', label: 'Parameters' },
+          { value: '6', label: 'Layers' },
+          { value: '6.11→3.87', label: 'Training loss' },
+          { value: '~11 min', label: 'Full run, M1' },
+        ],
+        specs: [
+          { k: 'Architecture', v: 'Decoder-only transformer' },
+          { k: 'Parameters', v: '30,044,544' },
+          { k: 'Layers / heads', v: '6 / 6' },
+          { k: 'Embedding dim', v: '384' },
+          { k: 'Context', v: '256 tokens' },
+          { k: 'Vocabulary', v: '50,257 · GPT-2 BPE' },
+          { k: 'Hardware', v: 'Apple M1 · MPS' },
+        ],
+        stack: [
+          { k: 'Out', t: 'Next-token prediction', s: 'Softmax over 50,257 tokens' },
+          { k: '×6', t: 'Transformer block', s: 'Causal self-attention + MLP + layer norm' },
+          { k: 'Emb', t: 'Token + positional embeddings', s: 'Text becomes vectors' },
+          { k: 'In', t: 'BPE-tokenized input', s: 'Raw text to token IDs' },
+        ],
+        points: [
+          { label: 'Why', text: 'To stop treating LLMs as a black box behind an API. Building it end to end means I can explain how a model turns text into numbers, attends across a sequence, and learns what comes next.' },
+          { label: 'Pipeline', text: 'Four scripts, fully reproducible: GPT-2 BPE tokenisation split 80/20 (~294K / ~75K tokens), the model itself, an AdamW cross-entropy training loop with checkpointing, and sampling from a prompt.' },
+          { label: 'Result', text: 'Training loss fell 6.11 → 3.87 against a random-guessing reference of ~10.8 across the vocabulary — real structure, not memorised noise. Validation ended slightly higher: mild overfitting, exactly what 30M parameters on 300K tokens should do.' },
+          { label: 'Emergent', text: 'Trained only on tinyshakespeare with no rules written for any of it, it picked up character names, dialogue formatting and archaic phrasing on its own.' },
+          { label: 'The real work', text: 'No NVIDIA GPU, so CUDA was out and everything ran on Apple MPS at ~2s per step — too slow to iterate. I profiled the per-step cost, traced it to the final softmax over the vocabulary, and tuned batch size to 16: a full run dropped to ~11 minutes with the architecture untouched.' },
+        ],
+        chips: ['PyTorch', 'Transformers', 'Causal attention', 'BPE', 'AdamW', 'Apple MPS', 'Profiling'],
+      },
+    };
+    const panels = labels.map((label, i) => {
+      const pj = projects[i];
+      return {
+        open: sel === i,
+        hasShots: !!(pj && pj.shots),
+        hasShots2: !!(pj && pj.shots2),
+        hasShots3: !!(pj && pj.shots3),
+        hasDeck: !!(pj && pj.deck),
+        hasDeck2: !!(pj && pj.deck2),
+        hasReport: !!(pj && pj.report),
+        hasPage: !!(pj && pj.page),
+        hasStats: !!(pj && pj.stats),
+        stats: (pj && pj.stats || []).map((s, k) => ({ ...s, key: k })),
+        hasSpec: !!(pj && pj.specs),
+        specs: (pj && pj.specs || []).map((s, k) => ({ ...s, key: k })),
+        stack: (pj && pj.stack || []).map((s, k) => ({ ...s, key: k })),
+        noShots: !(pj && (pj.shots || pj.shots2 || pj.shots3 || pj.specs)),
+        name: pj ? pj.name : label,
+        sub: pj ? pj.sub : projectMeta[i].range + ' · ' + regionRows[i].count + ' vertebrae',
+        summary: pj ? pj.summary : regionRows[i].detail + ' — drop a project image above and replace this caption with the work you want anchored to this region.',
+        points: (pj && pj.points || []).map((p, k) => ({ ...p, key: k })),
+        zones: (pj && pj.zones || []).map((z, k) => ({ ...z, key: k })),
+        chips: pj ? pj.chips.map((label, k) => ({ label, key: k })) : [{ label: 'Awaiting upload', key: 0 }],
+        range: projectMeta[i].range,
+        slot: projectMeta[i].slot,
+        tag: pj ? pj.tag : projectMeta[i].tag,
+        count: regionRows[i].count,
+        detail: regionRows[i].detail,
+      };
+    });
+    const captions = [
+      'Fig. A — Final enclosure, alignment confirmed',
+      'Fig. B — Chassis, battery pack and board before assembly',
+      'Fig. C — Angular data streaming off the bench rig',
+      'Fig. D — Assembling the sensor module by hand',
+    ];
+    const hi = this.state.heroShot ?? 0;
+    const pick = (k) => () => this.setState({ heroShot: k });
+    const dcCaptions = [
+      'Fig. A — Walking the deck at the ACM AI showcase',
+      'Fig. B — The team behind the model',
+      'Fig. C — Disaster Classification · ACM AI Project Teams',
+      'Fig. D — Four convolutional layers into two dense layers',
+      'Fig. E — DenseCNN per-class precision, recall and F1',
+    ];
+    const dh = this.state.dcShot ?? 0;
+    const dcPick = (k) => () => this.setState({ dcShot: k });
+    const acCaptions = [
+      'Fig. A — Confusion matrix, six classes, test split',
+      'Fig. B — Training vs. validation accuracy, 30 epochs',
+      'Fig. C — Training vs. validation loss, 30 epochs',
+      'Fig. D — Per-class F1: 0.89 – 0.94',
+    ];
+    const ah = this.state.acShot ?? 0;
+    const acPick = (k) => () => this.setState({ acShot: k });
+    return {
+      canvasRef: this.canvasRef, gaugeItems, regionRows, panels, gold,
+      heroA: hi === 0, heroB: hi === 1, heroC: hi === 2, heroD: hi === 3,
+      thumbA: hi !== 0, thumbB: hi !== 1, thumbC: hi !== 2, thumbD: hi !== 3,
+      pickA: pick(0), pickB: pick(1), pickC: pick(2), pickD: pick(3),
+      heroCaption: captions[hi],
+      dcHeroA: dh === 0, dcHeroB: dh === 1, dcHeroC: dh === 2, dcHeroD: dh === 3, dcHeroE: dh === 4,
+      dcThumbA: dh !== 0, dcThumbB: dh !== 1, dcThumbC: dh !== 2, dcThumbD: dh !== 3, dcThumbE: dh !== 4,
+      dcPickA: dcPick(0), dcPickB: dcPick(1), dcPickC: dcPick(2), dcPickD: dcPick(3), dcPickE: dcPick(4),
+      dcCaption: dcCaptions[dh],
+      acHeroA: ah === 0, acHeroB: ah === 1, acHeroC: ah === 2, acHeroD: ah === 3,
+      acThumbA: ah !== 0, acThumbB: ah !== 1, acThumbC: ah !== 2, acThumbD: ah !== 3,
+      acPickA: acPick(0), acPickB: acPick(1), acPickC: acPick(2), acPickD: acPick(3),
+      acCaption: acCaptions[ah],
+      showCue: !this.state.everClicked && hov == null && sel == null,
+      showHoverTip: hov != null && sel == null,
+      hoverLabel: hov != null ? labels[hov] : '',
+      closePanel: () => this.setState({ selected: null }),
+    };
+  }
+}
+</script>
+</body>
+</html>

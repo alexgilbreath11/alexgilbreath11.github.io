@@ -1,0 +1,37 @@
+/* theme.css — shared across the whole portfolio.
+   Link this from every page so the spine, the brain and the hub agree.
+   Both scenes already load the same design system; this pins the tokens
+   they share so the two experiences read as one site. */
+:root {
+  --pf-bg: #0b0e11;
+  --pf-surface: #14202b;
+  --pf-text: #e9eef3;
+  --pf-accent: #5980a6;
+
+  /* re-point the design-system tokens at the portfolio palette */
+  --color-bg: var(--pf-bg);
+  --color-surface: var(--pf-surface);
+  --color-text: var(--pf-text);
+  --color-accent: var(--pf-accent);
+
+  /* the design system's --color-divider is baked from a light-mode text
+     colour, so it goes nearly invisible on a dark ground — repoint it to
+     the same accent-tinted divider the brain scene already uses locally */
+  --color-divider: rgba(89, 128, 166, .42);
+}
+
+/* one shared top strip so both scenes feel like the same portfolio */
+.pf-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; gap: 22px;
+  padding: 12px 22px;
+  font-family: var(--font-heading, "Barlow Condensed", sans-serif);
+  letter-spacing: .16em; text-transform: uppercase; font-size: 12px;
+  background: color-mix(in srgb, var(--pf-bg) 72%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid color-mix(in srgb, var(--pf-text) 16%, transparent);
+}
+.pf-bar a { color: color-mix(in srgb, var(--pf-text) 72%, transparent); text-decoration: none; }
+.pf-bar a:hover, .pf-bar a[aria-current="page"] { color: var(--pf-accent); }
+.pf-bar .pf-home { margin-right: auto; font-weight: 600; color: var(--pf-text); }
+.pf-bar .pf-home b { color: var(--pf-accent); }

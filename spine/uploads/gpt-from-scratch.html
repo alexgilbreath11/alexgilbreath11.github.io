@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A small GPT, built from scratch — Alexander Gilbreath</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F2EC;
+    --sheet:#FAF9F4;
+    --ink:#1C1B17;
+    --ink-soft:#57534A;
+    --ink-faint:#8C877B;
+    --rule:#DCD8CE;
+    --rule-soft:#E7E3D9;
+    --accent:#8A2E38;      /* deep madder red — editor's ink */
+    --accent-tint:#F0E4E2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Spectral",Georgia,serif;
+    font-size:19px;
+    line-height:1.68;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--accent);color:var(--paper)}
+  a{color:var(--accent);text-underline-offset:2px;text-decoration-thickness:1px}
+  a:hover{text-decoration-color:var(--accent)}
+
+  .page{max-width:720px;margin:0 auto;padding:0 26px}
+  .wide{max-width:860px}
+
+  /* ---- masthead ---- */
+  .top{padding:70px 0 0}
+  .kicker{
+    font-family:"Inter",sans-serif;font-size:14px;color:var(--ink-faint);
+    letter-spacing:0.01em;margin-bottom:26px;
+  }
+  h1{
+    font-family:"Libre Caslon Display",Georgia,serif;
+    font-weight:400;
+    font-size:clamp(40px,7vw,64px);
+    line-height:1.04;
+    letter-spacing:-0.005em;
+  }
+  .deck{
+    font-size:clamp(20px,2.4vw,24px);
+    line-height:1.45;
+    color:var(--ink-soft);
+    font-weight:400;
+    margin-top:22px;
+    max-width:30ch;
+  }
+  .byline{
+    font-family:"Inter",sans-serif;font-size:13.5px;color:var(--ink-faint);
+    margin-top:30px;padding-bottom:34px;border-bottom:1px solid var(--rule);
+  }
+  .byline b{color:var(--ink-soft);font-weight:500}
+
+  /* ---- prose ---- */
+  .body{padding:44px 0 0}
+  .body p{margin:0 0 22px;max-width:66ch}
+  .lead:first-letter{
+    font-family:"Libre Caslon Display",Georgia,serif;
+    float:left;font-size:66px;line-height:0.82;
+    padding:6px 10px 0 0;color:var(--accent);
+  }
+  h2{
+    font-family:"Spectral",serif;font-weight:600;
+    font-size:25px;line-height:1.2;letter-spacing:-0.005em;
+    margin:52px 0 16px;
+  }
+  em,i{font-style:italic}
+  strong{font-weight:600}
+  .mark{color:var(--accent);font-weight:500}
+
+  /* ---- spec colophon ---- */
+  .spec{
+    margin:34px 0 8px;
+    padding:22px 24px;
+    background:var(--sheet);
+    border:1px solid var(--rule);
+    font-family:"Inter",sans-serif;font-size:14px;
+  }
+  .spec .h{font-family:"Spectral",serif;font-weight:600;font-size:15px;letter-spacing:0.02em;margin-bottom:12px;color:var(--ink)}
+  .spec dl{display:grid;grid-template-columns:auto 1fr;gap:0}
+  .spec dt{color:var(--ink-soft);padding:6px 16px 6px 0;border-bottom:1px solid var(--rule-soft)}
+  .spec dd{color:var(--ink);text-align:right;padding:6px 0;border-bottom:1px solid var(--rule-soft);font-variant-numeric:tabular-nums}
+  .spec dl>dt:last-of-type,.spec dl>dd:last-of-type{border-bottom:none}
+
+  /* inline architecture flow */
+  .flow{
+    margin:26px 0 8px;padding:20px 22px;
+    border-left:2px solid var(--accent);
+    background:var(--sheet);
+    font-family:"Inter",sans-serif;font-size:15px;color:var(--ink-soft);
+    line-height:1.9;
+  }
+  .flow b{color:var(--ink);font-weight:500}
+  .flow .arrow{color:var(--accent);padding:0 8px}
+
+  /* ---- figure ---- */
+  figure{margin:38px 0 10px}
+  .fig-box{border:1px solid var(--rule);background:var(--sheet);padding:26px 24px 18px}
+  figcaption{
+    font-family:"Inter",sans-serif;font-size:13.5px;color:var(--ink-soft);
+    line-height:1.55;margin-top:14px;
+  }
+  figcaption b{color:var(--ink);font-weight:500}
+  svg .curve{stroke-dasharray:1400;stroke-dashoffset:0}
+  @media(prefers-reduced-motion:no-preference){
+    svg .curve{stroke-dashoffset:1400;animation:draw 2s ease-out .2s forwards}
+  }
+  @keyframes draw{to{stroke-dashoffset:0}}
+
+  .colophon{
+    margin:56px 0 0;padding:26px 0 90px;border-top:1px solid var(--rule);
+    font-family:"Inter",sans-serif;font-size:14px;color:var(--ink-soft);line-height:1.65;
+  }
+  .colophon .who{font-family:"Spectral",serif;font-size:17px;color:var(--ink);font-weight:600}
+
+  @media(min-width:760px){
+    .split{display:grid;grid-template-columns:1fr 268px;gap:40px;align-items:start}
+    .split .spec{margin-top:6px;position:sticky;top:28px}
+  }
+  @media(max-width:520px){
+    body{font-size:18px}
+    .lead:first-letter{font-size:54px}
+  }
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<div class="page top">
+  <div class="kicker">Project notes · 2026</div>
+  <h1>A small GPT, built from scratch</h1>
+  <p class="deck">Writing the transformer behind modern language models in PyTorch, and training it on a laptop to imitate Shakespeare.</p>
+  <div class="byline"><b>Alexander Gilbreath</b> &nbsp;·&nbsp; machine learning, personal project</div>
+</div>
+
+<div class="page body">
+  <p class="lead">I had been using language models through an API for a while without really knowing what happens inside one, so I set out to build a small one myself, from the attention math up. The result is a 30-million-parameter GPT I wrote in PyTorch and trained on Shakespeare until it could produce dialogue in roughly the right shape: character names, line breaks, the archaic phrasing. What follows is how it works and what I found while building it.</p>
+
+  <div class="split">
+    <div>
+      <h2>The model</h2>
+      <p>It is a decoder-only transformer, the same family of architecture the GPT models use. Instead of downloading a model or fine-tuning an existing one, I implemented each piece: the token and positional embeddings, the multi-head causal self-attention, the feed-forward layers, and the layer normalization that keeps training stable. Stacked six layers deep, it comes to just over thirty million parameters.</p>
+      <p>The point was to stop treating a language model as a black box. Having written the components, I can now say exactly how text becomes numbers, how the model looks across a sequence, and how it learns to predict what comes next.</p>
+    </div>
+    <aside class="spec">
+      <div class="h">Specification</div>
+      <dl>
+        <dt>Architecture</dt><dd>Decoder-only transformer</dd>
+        <dt>Parameters</dt><dd>30,044,544</dd>
+        <dt>Layers / heads</dt><dd>6 / 6</dd>
+        <dt>Embedding dim</dt><dd>384</dd>
+        <dt>Context length</dt><dd>256 tokens</dd>
+        <dt>Vocabulary</dt><dd>50,257 (GPT-2 BPE)</dd>
+        <dt>Framework</dt><dd>PyTorch</dd>
+        <dt>Hardware</dt><dd>Apple M1 · MPS</dd>
+      </dl>
+    </aside>
+  </div>
+
+  <h2>How it reads a sequence</h2>
+  <p>Text comes in as tokens and moves upward through the six transformer blocks. Inside each block, attention lets every token look back over the tokens before it and weigh which ones matter for predicting the next. That attention is <em>causal</em>: a token can only see what came earlier, never the word it is trying to predict. The restriction is what forces the model to learn the language instead of copying the answer.</p>
+  <div class="flow">
+    tokens <span class="arrow">→</span> <b>embeddings</b> <span class="arrow">→</span> <b>attention + feed-forward</b> <span class="arrow">×6</span> <span class="arrow">→</span> next-token prediction
+  </div>
+
+  <h2>Training it</h2>
+  <p>I split the work into separate scripts so the whole run is reproducible. First the text is tokenized with GPT-2's byte-pair encoding and split 80/20 into training and validation sets, roughly 294,000 and 75,000 tokens. Then the model trains with an AdamW optimizer against a cross-entropy loss, logging both losses at intervals and saving checkpoints as it improves. A final script loads a checkpoint and generates text from a prompt, so I can read back what it actually learned.</p>
+
+  <h2>Did it learn?</h2>
+  <figure>
+    <div class="fig-box">
+      <svg viewBox="0 0 760 300" width="100%" role="img" aria-label="Line chart. Training loss falls from 6.11 at the start of the run to 3.87 at the end, well below the random-guessing baseline of about 10.8. Validation loss ends slightly above training loss.">
+        <!-- gridlines -->
+        <g stroke="var(--rule)" stroke-width="1">
+          <line x1="72" y1="48" x2="726" y2="48"/>
+          <line x1="72" y1="112" x2="726" y2="112"/>
+          <line x1="72" y1="176" x2="726" y2="176"/>
+          <line x1="72" y1="240" x2="726" y2="240"/>
+        </g>
+        <g fill="var(--ink-faint)" font-family="Inter, sans-serif" font-size="12">
+          <text x="60" y="52" text-anchor="end">11</text>
+          <text x="60" y="116" text-anchor="end">9</text>
+          <text x="60" y="180" text-anchor="end">6</text>
+          <text x="60" y="244" text-anchor="end">4</text>
+          <text x="72" y="286">start of run</text>
+          <text x="726" y="286" text-anchor="end">end of run</text>
+        </g>
+        <!-- random baseline -->
+        <line x1="72" y1="48" x2="726" y2="48" stroke="var(--ink-faint)" stroke-width="1.25" stroke-dasharray="2 5"/>
+        <text x="722" y="42" text-anchor="end" fill="var(--ink-faint)" font-family="Inter, sans-serif" font-size="12">random guessing ≈ 10.8</text>
+        <!-- validation (soft, ends slightly higher) -->
+        <path class="curve" d="M72,186 C140,215 220,230 330,239 C450,248 590,245 726,245"
+              fill="none" stroke="var(--ink-soft)" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.55"/>
+        <!-- training (ink solid) -->
+        <path class="curve" d="M72,184 C140,213 220,227 330,236 C450,245 590,249 726,250"
+              fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- endpoints -->
+        <circle cx="72" cy="184" r="3.5" fill="var(--accent)"/>
+        <circle cx="726" cy="250" r="4" fill="var(--accent)"/>
+        <text x="88" y="178" fill="var(--accent)" font-family="Spectral, serif" font-weight="600" font-size="15">6.11</text>
+        <text x="710" y="266" text-anchor="end" fill="var(--accent)" font-family="Spectral, serif" font-weight="600" font-size="15">3.87</text>
+        <!-- val label -->
+        <text x="500" y="228" fill="var(--ink-soft)" font-family="Inter, sans-serif" font-size="11.5">validation</text>
+        <text x="500" y="264" fill="var(--ink)" font-family="Inter, sans-serif" font-size="11.5">training</text>
+      </svg>
+      <figcaption><b>Figure 1.</b> Training and validation loss across the run, shown against the random-guessing baseline. Lower is better.</figcaption>
+    </div>
+  </figure>
+  <p>Training loss dropped from 6.11 to 3.87. By itself that number means nothing; the useful comparison is the baseline. Guessing randomly across a 50,257-token vocabulary scores about 10.8, so reaching <span class="mark">3.87</span> means the model found real structure in the text rather than memorizing noise.</p>
+  <p>Validation loss finished a little above training loss. That is the mild overfitting you would expect from a thirty-million-parameter model trained on only about 300,000 tokens, and more data or a smaller model would narrow it. The generated samples confirmed the result on their own, with recognizable character names and correctly formatted dialogue that nothing in the code told it to produce.</p>
+
+  <h2>The part that was actually hard</h2>
+  <p>The model trained without much trouble. Getting it to train fast enough to experiment with was the real problem. My laptop has no NVIDIA GPU, so CUDA was off the table and everything ran on Apple's MPS backend, where performance behaves differently. Early steps took around two seconds each, too slow to iterate on.</p>
+  <p>Rather than guess at fixes, I profiled a single step and traced almost all of the cost to the final softmax over the 50,257-token vocabulary, the most expensive operation on this backend. Lowering the batch size to sixteen fit the backend better and brought a full run down to about eleven minutes, without changing the architecture or the result. Finding out <em>why</em> it was slow before changing anything is the part I am most pleased with, and it is the difference between a model that happens to run and one I understand.</p>
+
+  <h2>What I took from it</h2>
+  <p>Building this closed the gap between using language models and understanding them. I can explain what attention does, why the loss falls, and where the compute goes, because I wrote each of those parts rather than importing them. It also walked me through the full shape of a real machine-learning project: preparing data, defining a model, training and evaluating it, generating from it, and profiling the slow parts in between.</p>
+
+  <div class="colophon">
+    <div class="who">Alexander Gilbreath</div>
+    Built with PyTorch on Apple Silicon (MPS), 2026. Techniques used: transformer self-attention, BPE tokenization, AdamW with cross-entropy training, train and validation evaluation, and performance profiling.
+  </div>
+</div>
+
+</body>
+</html>

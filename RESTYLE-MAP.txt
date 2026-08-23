@@ -1,0 +1,275 @@
+RESTYLE MAP — generated Sat Aug 22 21:28:43 UTC 2026
+Target theme: dark   Shared accent: #5980a6
+
+These are the literal (hard-coded) colours inside each scene. theme.css can
+retarget the design-system *variables*, but literal hex in inline styles has
+to be changed in place. The Claude Code step (MERGE-PROMPT.md) does that.
+
+============================================================
+SPINE  — currently light + GOLD accent. Unify its gold -> #5980a6,
+         warm 'bone' tones -> neutral, light bg -> portfolio bg.
+============================================================
+         2 407:#e7ddc8
+         2 407:#d9a833
+         1 940:#a8422f
+         1 939:#c07a2c
+         1 938:#5980a6
+         1 937:#4d7a52
+         1 911:#a8422f
+         1 910:#c07a2c
+         1 909:#d9a833
+         1 908:#4d7a52
+         1 890:#4d7a52
+         1 889:#a8422f
+         1 888:#d9a833
+         1 866:#d9a833
+         1 857:#d9a833
+         1 854:#8a6412
+         1 83:#d9a833
+         1 82:#8a6412
+         1 828:#d9a833
+         1 809:#d8c39a
+         1 556:#d8c39a
+         1 52:#f0c04a
+         1 528:#f3ede1
+         1 51:#d9a833
+         1 50:#d9a833
+         1 50:#1d1f20
+         1 45:#8a6412
+         1 43:#d9a833
+         1 42:#d9a833
+         1 407:#f0c04a
+         1 407:#efe7d6
+         1 407:#e8b95c
+         1 407:#dcc7a6
+         1 407:#d8c39a
+         1 407:#c8901f
+         1 161:#23272b
+
+  Occurrences of the gold accent (#d9a833) to remap:
+   line 42:      <span style="position:absolute; inset:0; border:1px solid #d9a833; border-radius:50%; animation: cueRin
+   line 43:      <span style="width:6px; height:6px; background:#d9a833; border-radius:50%;"></span>
+   line 50:  <div style="position:fixed; left:50%; bottom:5.4vh; transform:translateX(-50%); z-index:4; pointer-events:n
+   line 51:    <span style="width:16px; height:3px; flex:none; background:#d9a833;"></span>
+   line 83:              <span style="width:16px; height:3px; background:#d9a833;"></span>{{ p.tag }}
+   line 407:<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot
+   line 828:    gold.set(this.props.goldColor ?? '#d9a833');
+   line 857:        dot: lit ? '#d9a833' : i === active ? 'var(--color-accent)' : 'transparent',
+   line 866:    const gold = this.props.goldColor ?? '#d9a833';
+   line 888:          { name: 'Yellow', color: '#d9a833', rule: '10s of suboptimal posture → pre-alert grace period' }
+   line 909:          { name: 'Minor', color: '#d9a833', rule: 'Visible but limited structural impact' },
+
+============================================================
+BRAIN  — already dark + blue (#5980a6). This is the reference look;
+         leave it as the target and match the spine to it.
+============================================================
+         4 91:#5980a6
+         4 67:#5980a6
+         4 57:#5980a6
+         4 516:#5980a6
+         4 483:#5980a6
+         4 47:#5980a6
+         4 456:#5980a6
+         4 447:#5980a6
+         4 417:#5980a6
+         4 380:#5980a6
+         4 360:#5980a6
+         4 301:#5980a6
+         4 263:#5980a6
+         4 218:#5980a6
+         4 181:#5980a6
+         4 143:#5980a6
+         2 39:#e9eef3
+         1 90:#0b0e11
+         1 82:#eef3f8
+         1 81:#5980a6
+         1 70:#cfe4f5
+         1 70:#0b0e11
+         1 69:#5980a6
+         1 69:#0b0e11
+         1 66:#5980a6
+         1 60:#cfe4f5
+         1 60:#0b0e11
+         1 59:#5980a6
+         1 59:#0b0e11
+         1 56:#5980a6
+         1 541:#eef3f8
+         1 541:#5980a6
+         1 540:#eef3f8
+         1 540:#5980a6
+         1 539:#eef3f8
+         1 539:#5980a6
+         1 538:#eef3f8
+         1 538:#5980a6
+         1 533:#cfe4f5
+         1 532:#cfe4f5
+         1 531:#cfe4f5
+         1 528:#5980a6
+         1 527:#5980a6
+         1 526:#5980a6
+         1 525:#5980a6
+         1 521:#eef3f8
+         1 519:#5980a6
+         1 518:#5980a6
+         1 518:#0b0e11
+         1 50:#cfe4f5
+         1 50:#0b0e11
+         1 500:#eef3f8
+         1 500:#5980a6
+         1 49:#5980a6
+         1 49:#0b0e11
+         1 499:#eef3f8
+         1 499:#5980a6
+         1 498:#eef3f8
+         1 498:#5980a6
+         1 494:#5980a6
+         1 493:#5980a6
+         1 492:#5980a6
+         1 491:#5980a6
+         1 488:#eef3f8
+         1 486:#5980a6
+         1 485:#5980a6
+         1 485:#0b0e11
+         1 46:#5980a6
+         1 467:#5980a6
+         1 466:#5980a6
+         1 465:#5980a6
+         1 464:#5980a6
+         1 461:#eef3f8
+         1 459:#5980a6
+         1 458:#5980a6
+         1 458:#0b0e11
+         1 448:#5980a6
+         1 434:#eef3f8
+         1 434:#5980a6
+         1 433:#eef3f8
+         1 433:#5980a6
+         1 432:#eef3f8
+         1 432:#5980a6
+         1 428:#5980a6
+         1 427:#5980a6
+         1 426:#5980a6
+         1 425:#5980a6
+         1 422:#eef3f8
+         1 420:#5980a6
+         1 419:#5980a6
+         1 419:#0b0e11
+         1 412:#5980a6
+         1 39:#14202b
+         1 39:#0b0e11
+         1 39:#07090b
+         1 397:#eef3f8
+         1 397:#5980a6
+         1 396:#eef3f8
+         1 396:#5980a6
+         1 395:#eef3f8
+         1 395:#5980a6
+         1 391:#5980a6
+         1 390:#5980a6
+         1 389:#5980a6
+         1 388:#5980a6
+         1 385:#eef3f8
+         1 383:#5980a6
+         1 382:#5980a6
+         1 382:#0b0e11
+         1 375:#5980a6
+         1 366:#cfe4f5
+         1 365:#cfe4f5
+         1 364:#cfe4f5
+         1 361:#5980a6
+         1 343:#eef3f8
+         1 342:#5980a6
+         1 339:#eef3f8
+         1 338:#5980a6
+         1 335:#eef3f8
+         1 334:#5980a6
+         1 325:#5980a6
+         1 321:#5980a6
+         1 317:#5980a6
+         1 313:#5980a6
+         1 306:#eef3f8
+         1 305:#5980a6
+         1 303:#0b0e11
+         1 296:#5980a6
+         1 280:#eef3f8
+         1 280:#5980a6
+         1 279:#eef3f8
+         1 279:#5980a6
+         1 278:#eef3f8
+         1 278:#5980a6
+         1 274:#5980a6
+         1 273:#5980a6
+         1 272:#5980a6
+         1 271:#5980a6
+         1 268:#eef3f8
+         1 266:#5980a6
+         1 265:#5980a6
+         1 265:#0b0e11
+         1 258:#5980a6
+         1 240:#eef3f8
+         1 240:#5980a6
+         1 239:#eef3f8
+         1 239:#5980a6
+         1 238:#eef3f8
+         1 238:#5980a6
+         1 235:#cfe4f5
+         1 234:#cfe4f5
+         1 233:#cfe4f5
+         1 229:#5980a6
+         1 228:#5980a6
+         1 227:#5980a6
+         1 226:#5980a6
+         1 223:#eef3f8
+         1 221:#5980a6
+         1 220:#5980a6
+         1 220:#0b0e11
+         1 204:#eef3f8
+         1 204:#5980a6
+         1 203:#eef3f8
+         1 203:#5980a6
+         1 202:#eef3f8
+         1 202:#5980a6
+         1 199:#eef3f8
+         1 199:#5980a6
+         1 198:#eef3f8
+         1 198:#5980a6
+         1 197:#eef3f8
+         1 197:#5980a6
+         1 196:#eef3f8
+         1 196:#5980a6
+         1 192:#5980a6
+         1 191:#5980a6
+         1 190:#5980a6
+         1 18:#e9eef3
+         1 189:#5980a6
+         1 186:#eef3f8
+         1 184:#5980a6
+         1 183:#5980a6
+         1 183:#0b0e11
+         1 17:#9dc2e0
+         1 16:#0b0e11
+         1 165:#eef3f8
+         1 165:#5980a6
+         1 164:#eef3f8
+         1 164:#5980a6
+         1 163:#eef3f8
+         1 163:#5980a6
+         1 159:#5980a6
+         1 158:#5980a6
+         1 157:#5980a6
+         1 156:#5980a6
+         1 151:#eef3f8
+         1 149:#5980a6
+         1 148:#5980a6
+         1 148:#0b0e11
+         1 145:#0b0e11
+         1 138:#5980a6
+         1 131:#cfe4f5
+         1 128:#eef3f8
+         1 127:#5980a6
+         1 116:#cfe4f5
+         1 115:#cfe4f5
+         1 108:#cfe4f5
+         1 102:#5980a6
+         1 101:#cfe4f5
+         1 100:#5980a6

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alexander Gilbreath — Portfolio</title>
+<meta name="description" content="Two interactive 3D ways into Alexander Gilbreath's work — a scrolling spine of build history, and a cortex mapped by region.">
+<meta property="og:title" content="Alexander Gilbreath — Portfolio">
+<meta property="og:description" content="Two interactive 3D ways into the same body of work — pick a lens and explore.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230b0e11'/%3E%3Ctext%20x='32'%20y='45'%20font-family='Georgia,serif'%20font-size='34'%20font-weight='700'%20text-anchor='middle'%20fill='%235980a6'%3EG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background:
+      radial-gradient(120% 90% at 50% 40%, color-mix(in srgb, var(--pf-surface) 60%, var(--pf-bg)) 0%, var(--pf-bg) 62%, #07090b 100%);
+    color: var(--pf-text);
+    font-family: "Barlow", system-ui, sans-serif;
+    min-height: 100%;
+    display: flex; flex-direction: column;
+  }
+  .wrap { flex: 1; max-width: 1080px; margin: 0 auto; padding: 120px 28px 60px; width: 100%; }
+  .kicker { font-family: "Barlow Condensed", sans-serif; letter-spacing: .24em; text-transform: uppercase;
+            font-size: 12px; color: var(--pf-accent); }
+  h1 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; text-transform: uppercase;
+       font-size: clamp(40px, 7vw, 68px); line-height: .96; margin: 8px 0 10px; }
+  .lede { max-width: 52ch; color: color-mix(in srgb, var(--pf-text) 64%, transparent); font-size: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 44px; }
+  .card {
+    position: relative; display: block; text-decoration: none; color: inherit;
+    padding: 26px; min-height: 200px;
+    background: color-mix(in srgb, var(--pf-surface) 55%, transparent);
+    border: 1px solid color-mix(in srgb, var(--pf-text) 14%, transparent);
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .card:hover { transform: translateY(-3px); border-color: var(--pf-accent);
+                box-shadow: 0 0 0 1px var(--pf-accent), 0 18px 40px color-mix(in srgb, var(--pf-accent) 22%, transparent); }
+  .card .tag { font-family: "Barlow Condensed", sans-serif; letter-spacing: .16em; text-transform: uppercase;
+               font-size: 11px; color: var(--pf-accent); }
+  .card h2 { font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; font-weight: 700;
+             font-size: 30px; margin: 8px 0 6px; }
+  .card p { margin: 0; color: color-mix(in srgb, var(--pf-text) 60%, transparent); font-size: 14px; }
+  .card .go { position: absolute; right: 22px; bottom: 20px; color: var(--pf-accent); font-size: 20px; }
+  /* blueprint corners to echo the two scenes */
+  .card i { position: absolute; width: 10px; height: 10px; border: 1px solid var(--pf-accent); opacity: .8; }
+  .card .tl { top: 8px; left: 8px; border-right: 0; border-bottom: 0; }
+  .card .tr { top: 8px; right: 8px; border-left: 0; border-bottom: 0; }
+  .card .bl { bottom: 8px; left: 8px; border-right: 0; border-top: 0; }
+  .card .br { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
+  footer { text-align: center; padding: 22px; font-size: 12px;
+           color: color-mix(in srgb, var(--pf-text) 42%, transparent); }
+</style>
+</head>
+<body>
+  <div class="pf-bar">
+    <span class="pf-home">GILBREATH<b>.</b></span>
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="spine/Spine.dc.html">Spine</a>
+    <a href="brain/brain-portfolio.dc.html">Brain</a>
+  </div>
+
+  <div class="wrap">
+    <div class="kicker">Portfolio — index of work</div>
+    <h1>Alexander<br>Gilbreath</h1>
+    <p class="lede">Two interactive ways into the same body of work. Pick a lens below —
+       each opens a full 3D scene you can explore.</p>
+
+    <div class="grid">
+      <a class="card" href="brain/brain-portfolio.dc.html">
+        <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
+        <span class="tag">3D · Cortex</span>
+        <h2>The Brain</h2>
+        <p>Projects filed by region. Hover the cortex, click to open.</p>
+        <span class="go">↗</span>
+      </a>
+      <a class="card" href="spine/Spine.dc.html">
+        <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
+        <span class="tag">3D · Vertebra</span>
+        <h2>The Spine</h2>
+        <p>Click a vertebra to travel the build history end to end.</p>
+        <span class="go">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>Built by Alexander Gilbreath</footer>
+</body>
+</html>
