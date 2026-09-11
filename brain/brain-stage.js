@@ -45,11 +45,11 @@ const smooth = (e0, e1, x) => { const t = clamp((x - e0) / (e1 - e0), 0, 1); ret
 
 /* ---------- anatomy ---------- */
 const REGIONS = [
-  { id: 'frontal', label: 'Frontal lobe', anchor: [0.52, 0.26, 0.66], core: '#bcd3e7' },
-  { id: 'parietal', label: 'Parietal lobe', anchor: [0.40, 0.60, -0.14], core: '#7ba2c6' },
-  { id: 'temporal', label: 'Temporal lobe', anchor: [0.66, -0.34, 0.10], core: '#4d7597' },
-  { id: 'occipital', label: 'Occipital lobe', anchor: [0.34, 0.16, -0.86], core: '#325274' },
-  { id: 'cerebellum', label: 'Cerebellum', anchor: [0.24, -0.44, -0.86], core: '#284660' }
+  { id: 'frontal', label: 'Frontal lobe', anchor: [0.52, 0.26, 0.66], core: '#d6b3a8' },
+  { id: 'parietal', label: 'Parietal lobe', anchor: [0.40, 0.60, -0.14], core: '#cfaaa0' },
+  { id: 'temporal', label: 'Temporal lobe', anchor: [0.66, -0.34, 0.10], core: '#c39a92' },
+  { id: 'occipital', label: 'Occipital lobe', anchor: [0.34, 0.16, -0.86], core: '#bb9690' },
+  { id: 'cerebellum', label: 'Cerebellum', anchor: [0.24, -0.44, -0.86], core: '#b28c84' }
 ];
 const RINDEX = {}; REGIONS.forEach((r, i) => (RINDEX[r.id] = i));
 
@@ -130,9 +130,9 @@ const XRAY_FRAG = `
     vec3 N = normalize(vN), V = normalize(vV);
     // smooth lobe fields, so the boundaries read as soft anatomical borders
     float wob = 0.035 * sin(vP.y * 7.0 + vP.x * 5.0);
-    float aT = smoothstep(-0.12, -0.20, vP.y + wob) * smoothstep(-0.48, -0.40, vP.z) * smoothstep(0.16, 0.24, abs(vP.x));
+    float aT = (1.0 - smoothstep(-0.20, -0.12, vP.y + wob)) * smoothstep(-0.48, -0.40, vP.z) * smoothstep(0.16, 0.24, abs(vP.x));
     float wF = smoothstep(0.26, 0.33, vP.z + wob);
-    float wO = smoothstep(-0.42, -0.50, vP.z + wob);
+    float wO = (1.0 - smoothstep(-0.50, -0.42, vP.z + wob));
     float aF = wF * (1.0 - aT);
     float aO = wO * (1.0 - aT) * (1.0 - wF);
     float aP = max(0.0, 1.0 - aT - aF - aO);
@@ -148,14 +148,14 @@ const XRAY_FRAG = `
     float d2 = max(dot(N, L2), 0.0);
     float d3 = max(dot(N, L3), 0.0);
     float groove = smoothstep(0.25, 0.95, vS);
-    float ao = mix(1.0, 0.30, groove);
-    vec3 base = mix(tint, tint * 0.34, groove);
+    float ao = mix(1.0, 0.62, groove);
+    vec3 base = mix(tint, tint * 0.64, groove);
     vec3 col = base * (0.34 + 0.60*d1 + 0.30*d2 + 0.16*d3) * ao;
     vec3 H = normalize(L1 + V);
-    col += vec3(1.0) * pow(max(dot(N, H), 0.0), 34.0) * 0.16 * ao;
+    col += vec3(1.0) * pow(max(dot(N, H), 0.0), 22.0) * 0.10 * ao;
     float fres = pow(1.0 - max(dot(N, V), 0.0), 3.0);
     float g = uGlow * own;
-    col += uAccent * fres * (0.26 + 0.45*g);
+    col += uAccent * fres * (0.06 + 0.28*g);
     col = mix(col, mix(col, uAccent, 0.30) * 1.40, g);
     col *= 1.0 + 0.10*uBoost;
     col *= 1.0 - 0.42*uDim*own;
@@ -240,7 +240,7 @@ class BrainStage extends HTMLElement {
     const edge = new THREE.Color('#cfe4f5');
     const CORES = {};
     REGIONS.forEach(r => (CORES[r.id] = r.core));
-    CORES.stem = '#1d3448';
+    CORES.stem = '#b89989';
     const FILLS = { frontal: 0.17, parietal: 0.145, temporal: 0.115, occipital: 0.09, cerebellum: 0.09 };
     const mkMat = (lobeId = -1, baseHex = '#5980a6') => new THREE.ShaderMaterial({
       uniforms: {
@@ -352,7 +352,7 @@ class BrainStage extends HTMLElement {
         uColor: { value: new THREE.Color('#9dc2e0') }, uHotColor: { value: new THREE.Color('#ffffff') }
       },
       vertexShader: SPARK_VERT, fragmentShader: SPARK_FRAG,
-      transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, depthTest: false
+      transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, depthTest: true
     });
     brain.add(new THREE.Points(sg, this._sparkMat));
 
@@ -361,6 +361,13 @@ class BrainStage extends HTMLElement {
     this._ndc = new THREE.Vector2(-2, -2);
     this._pick = Object.values(this._regionMeshes).flat();
     this._onMove = e => {
+      if (this._dragging) {
+        const dx = e.clientX - this._lastX, dy = e.clientY - this._lastY;
+        this._dragDistance += Math.abs(dx) + Math.abs(dy);
+        this._root.rotation.y += dx * 0.006;
+        this._tilt = clamp((this._tilt || 0) + dy * 0.004, -0.65, 0.65);
+        this._lastX = e.clientX; this._lastY = e.clientY;
+      }
       const r = this.getBoundingClientRect();
       this._ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
       this._mx = (e.clientX - r.left) / r.width - 0.5;
@@ -368,10 +375,24 @@ class BrainStage extends HTMLElement {
       this._cx = e.clientX; this._cy = e.clientY;
     };
     this._onLeave = () => { this._ndc.set(-2, -2); this._mx = this._my = 0; this._setHover(null); };
-    this._onClick = () => {
+    this._onClick = e => {
+      if (this._dragDistance > 5) return;
+      this._onMove(e);
+      this._ray.setFromCamera(this._ndc, this._cam);
+      const hit = this._ray.intersectObjects(this._pick, false)[0];
+      this._setHover(hit ? hit.object.userData.region : null);
       if (this._hover) this.selectRegion(this._hover);
       else this.clearSelection();
     };
+    renderer.domElement.style.touchAction = 'pan-y';
+    this.addEventListener('pointerdown', e => {
+      this._dragging = true; this._dragDistance = 0;
+      this._lastX = e.clientX; this._lastY = e.clientY;
+      this.setPointerCapture(e.pointerId);
+    });
+    const endDrag = () => { this._dragging = false; };
+    this.addEventListener('pointerup', endDrag);
+    this.addEventListener('pointercancel', endDrag);
     this.addEventListener('pointermove', this._onMove);
     this.addEventListener('pointerleave', this._onLeave);
     this.addEventListener('click', this._onClick);
@@ -379,6 +400,26 @@ class BrainStage extends HTMLElement {
     this._ro = new ResizeObserver(() => this._resize());
     this._ro.observe(this);
     this._buildLabels();
+    this._resize();
+    const controls = document.createElement('nav');
+    controls.className = 'brain-controls';
+    controls.setAttribute('aria-label', 'Explore brain regions');
+    for (const region of REGIONS) {
+      const button = document.createElement('button');
+      button.type = 'button'; button.textContent = region.label.replace(' lobe', '');
+      button.addEventListener('click', e => { e.stopPropagation(); this.selectRegion(region.id); });
+      controls.appendChild(button);
+    }
+    const motion = document.createElement('button');
+    motion.type = 'button'; motion.textContent = 'Pause rotation';
+    motion.addEventListener('click', e => {
+      e.stopPropagation(); this._motionPaused = !this._motionPaused;
+      motion.textContent = this._motionPaused ? 'Resume rotation' : 'Pause rotation';
+    });
+    controls.appendChild(motion);
+    controls.addEventListener('pointerdown', e => e.stopPropagation());
+    controls.addEventListener('pointermove', e => e.stopPropagation());
+    this.appendChild(controls);
 
     // skip rendering while scrolled out of view (e.g. embedded above a long page) --
     // keeps the rAF loop alive so it resumes the instant this comes back into view
@@ -399,7 +440,7 @@ class BrainStage extends HTMLElement {
     this._renderer.setSize(w, h);
     this._cam.aspect = w / h; this._cam.updateProjectionMatrix();
     const s = Math.min(1, Math.max(0.62, w / 1200));
-    this._root.scale.setScalar(w < 760 ? 0.78 : 1);
+    this._root.scale.setScalar(Math.min(1, w / h * 1.12));
     this._sparkMat.uniforms.uSize.value = 20 * Math.min(devicePixelRatio, 2) * s;
   }
 
@@ -545,11 +586,11 @@ class BrainStage extends HTMLElement {
       const hit = this._ray.intersectObjects(this._pick, false)[0];
       this._setHover(hit ? hit.object.userData.region : null);
     }
-    const idleSpin = (this._paused || this._noSpin) ? 0 : 0.16;
+    const idleSpin = (this._dragging || this._noSpin || this._motionPaused) ? 0 : 0.12;
     // pointer position steers the rotation: right/left spins about Y, top/bottom tilts about X
     const dz = v => (Math.abs(v) < 0.05 ? 0 : Math.sign(v) * (Math.abs(v) - 0.05) / 0.45);
-    const steerY = this._paused ? 0 : dz(this._mx) * 1.5;
-    const steerX = this._paused ? 0 : dz(this._my) * 1.1;
+    const steerY = 0;
+    const steerX = 0;
     this._velY = (this._velY || 0) + ((idleSpin + steerY) - (this._velY || 0)) * Math.min(1, dt * 3.0);
     this._velX = (this._velX || 0) + (steerX - (this._velX || 0)) * Math.min(1, dt * 3.0);
     this._driftAmt = (this._driftAmt === undefined) ? 1 : this._driftAmt + ((this._paused ? 0 : 1) - this._driftAmt) * Math.min(1, dt * 1.8);
@@ -592,7 +633,7 @@ class BrainStage extends HTMLElement {
   /* ---- public API ---- */
   selectRegion(id) {
     if (!REGIONS.some(r => r.id === id)) return;
-    this._selected = id; this._paused = true; this._pauseT = this._clock.elapsedTime;
+    this._selected = id; this._paused = false; this._pauseT = this._clock.elapsedTime;
     this.dispatchEvent(new CustomEvent('brain-select', { detail: { id, label: REGIONS.find(r => r.id === id).label } }));
   }
   clearSelection() {

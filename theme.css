@@ -35,3 +35,59 @@
 .pf-bar a:hover, .pf-bar a[aria-current="page"] { color: var(--pf-accent); }
 .pf-bar .pf-home { margin-right: auto; font-weight: 600; color: var(--pf-text); }
 .pf-bar .pf-home b { color: var(--pf-accent); }
+
+/* Quiet framing lets the anatomy and project work take focus. */
+:root { --pf-accent: #9bbdd0; --color-divider: rgba(155,189,208,.22); }
+* { box-sizing: border-box; }
+body { -webkit-font-smoothing: antialiased; }
+::selection { background: #9bbdd0; color: #101820; }
+a, button { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible { outline: 2px solid #d6b3a8; outline-offset: 5px; }
+button, a { transition: color .2s, background .2s, border-color .2s; }
+#brain-scene { min-height: 680px; height: 100svh !important; background: radial-gradient(ellipse at 52% 48%, #253139 0%, #10191f 48%, #090e12 85%) !important; }
+#brain-scene > div:first-child { opacity: .18 !important; }
+.portfolio-header { padding: 36px 44px !important; }
+.portfolio-header h1 { font-family: var(--font-body), sans-serif; font-size: clamp(32px, 3.7vw, 56px) !important; font-weight: 500; line-height: 1.02 !important; letter-spacing: -.055em !important; text-transform: none !important; margin: 14px 0 !important; }
+.portfolio-header > div:first-child > div:last-child { line-height: 1.65; max-width: 29ch !important; color: #a9bac5 !important; }
+.portfolio-header nav { gap: 22px !important; }
+.portfolio-header nav a { color: #c6d3db; padding-block: 10px; }
+.portfolio-header nav a:hover { color: #fff; }
+.portfolio-header .btn { border-radius: 100px; background: #bcd0dc; padding: 12px 20px; }
+.highlight-photos .blueprint { border-radius: 14px; overflow: hidden; border: 1px solid #ffffff24; box-shadow: 0 12px 36px #0005; }
+.highlight-photos .corner, .detail-panel .corner { display: none; }
+.detail-panel { width: min(480px, 46vw) !important; background: rgba(16,24,30,.96) !important; backdrop-filter: blur(24px) !important; box-shadow: -24px 0 80px #0004; }
+.detail-panel article { border: 1px solid #a9bac522; border-radius: 16px; padding: 22px !important; background: #ffffff03 !important; }
+.detail-panel h3 { text-transform: none !important; line-height: 1.2 !important; letter-spacing: -.02em; }
+.detail-panel p { font-size: 14px !important; line-height: 1.75 !important; color: #b8c5cf !important; }
+.detail-panel button { min-height: 44px; min-width: 44px; }
+.brain-controls { position: absolute; z-index: 4; bottom: 105px; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; padding: 6px; border: 1px solid #bcd0dc26; border-radius: 100px; background: #10191fe6; backdrop-filter: blur(14px); white-space: nowrap; }
+.brain-controls button { border: 0; border-radius: 100px; padding: 11px 14px; color: #bccbd5; background: transparent; cursor: pointer; font: 12px var(--font-body, sans-serif); min-height: 40px; }
+.brain-controls button:hover, .brain-controls button:focus-visible { background: #bcd0dc18; color: #fff; }
+.brain-controls button:last-child { border-left: 1px solid #bcd0dc26; color: #d6b3a8; }
+.brain-readout > div:first-child, .brain-readout > div:last-child { opacity: .65; }
+@media (max-width: 900px) {
+  .portfolio-header { padding: 24px !important; gap: 16px !important; }
+  .portfolio-header > div:last-child { gap: 12px !important; }
+  .portfolio-header nav { gap: 12px !important; font-size: 11px !important; }
+  .highlight-photos { display: none !important; }
+  .brain-readout > div:first-child, .brain-readout > div:last-child { display: none !important; }
+  .brain-controls { bottom: 95px; }
+  .brain-controls button { padding: 10px; }
+}
+@media (max-width: 600px) {
+  #brain-scene { min-height: 740px; }
+  .portfolio-header { flex-direction: column; padding: 22px !important; }
+  .portfolio-header h1 { font-size: 36px !important; }
+  .portfolio-header > div:first-child > div:last-child { max-width: 34ch !important; font-size: 12px !important; }
+  .portfolio-header > div:last-child { width: 100%; justify-content: space-between; }
+  .portfolio-header .btn { font-size: 11px; padding: 9px 14px; }
+  .brain-controls { width: calc(100% - 32px); flex-wrap: wrap; justify-content: center; border-radius: 20px; bottom: 86px; white-space: normal; }
+  .brain-controls button { font-size: 11px; padding: 8px 11px; }
+  .detail-panel { width: 100% !important; top: 18% !important; height: 82% !important; border-radius: 24px 24px 0 0; border-top: 1px solid #bcd0dc40; }
+  .brain-readout { right: 0 !important; padding: 0 16px !important; }
+  .brain-readout span { font-size: 11px !important; letter-spacing: .13em !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

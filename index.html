@@ -59,23 +59,13 @@
 
   <div style="position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .5; background-image: linear-gradient(rgba(89,128,166,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(89,128,166,.10) 1px, transparent 1px); background-size: 96px 96px; mask-image: radial-gradient(110% 90% at 50% 50%, #000 30%, transparent 85%);"></div>
 
-  <div style="position: absolute; inset: 0; z-index: 3; pointer-events: none; display: {{ photoDisplay }};">
+  <div class="highlight-photos" style="position: absolute; inset: 0; z-index: 3; pointer-events: none; display: {{ photoDisplay }};">
     <div style="position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: translate(min(calc(48vmin + 96px), calc(50vw - 76px)), calc(58px - (100vh - 284px) / 4));">
       <div style="--ly: max(14px, calc((100vh - 284px) / 4 - 60px)); position: absolute; left: 0; top: 0; width: 132px; height: 120px; margin-left: -66px; margin-top: -60px; animation: driftLane 44s ease-in-out infinite normal; animation-delay: -4s;">
         <div class="blueprint" data-keepout="1" onClick="{{ openPhoto1 }}" style="position: absolute; inset: 0; padding: 5px; background: rgba(11,14,17,.62); pointer-events: auto; cursor: pointer; transition: box-shadow .25s ease;" style-hover="box-shadow: 0 0 0 1px #5980a6, 0 0 26px rgba(89,128,166,.35);">
           <i class="corner tl" style="color: #5980a6"></i><i class="corner tr" style="color: #5980a6"></i><i class="corner bl" style="color: #5980a6"></i><i class="corner br" style="color: #5980a6"></i>
           <image-slot id="brain-photo-1" shape="rect" fit="cover" placeholder="Drop a photo of you"></image-slot>
           <span style="position: absolute; left: 5px; top: 5px; z-index: 2; font-family: var(--font-heading); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; padding: 3px 6px; background: #5980a6; color: #0b0e11;">Award</span>
-          <span style="position: absolute; right: 6px; bottom: 5px; z-index: 2; font-family: var(--font-heading); font-size: 11px; color: #cfe4f5; text-shadow: 0 1px 3px #0b0e11;">↗</span>
-        </div>
-      </div>
-    </div>
-    <div style="position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: translate(max(calc(-48vmin - 96px), calc(-50vw + 68px)), calc(58px - (100vh - 284px) / 4));">
-      <div style="--ly: max(14px, calc((100vh - 284px) / 4 - 58px)); position: absolute; left: 0; top: 0; width: 116px; height: 116px; margin-left: -58px; margin-top: -58px; animation: driftLane 38s ease-in-out infinite normal; animation-delay: -17s;">
-        <div class="blueprint" data-keepout="1" onClick="{{ openPhoto2 }}" style="position: absolute; inset: 0; padding: 5px; background: rgba(11,14,17,.62); pointer-events: auto; cursor: pointer; transition: box-shadow .25s ease;" style-hover="box-shadow: 0 0 0 1px #5980a6, 0 0 26px rgba(89,128,166,.35);">
-          <i class="corner tl" style="color: #5980a6"></i><i class="corner tr" style="color: #5980a6"></i><i class="corner bl" style="color: #5980a6"></i><i class="corner br" style="color: #5980a6"></i>
-          <image-slot id="brain-photo-2" shape="rect" fit="cover" placeholder="Photo"></image-slot>
-          <span style="position: absolute; left: 5px; top: 5px; z-index: 2; font-family: var(--font-heading); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; padding: 3px 6px; background: #5980a6; color: #0b0e11;">Microsoft</span>
           <span style="position: absolute; right: 6px; bottom: 5px; z-index: 2; font-family: var(--font-heading); font-size: 11px; color: #cfe4f5; text-shadow: 0 1px 3px #0b0e11;">↗</span>
         </div>
       </div>
@@ -90,20 +80,19 @@
         </div>
       </div>
     </div>
-    </div>
   </div>
 
   <x-import component-from-global-scope="brain-stage" hint-size="100%,100%" style="position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%;"></x-import>
 
-  <header style="position: absolute; z-index: 5; top: 0; left: 0; right: 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 30px 38px; pointer-events: none;">
+  <header class="portfolio-header" style="position: absolute; z-index: 5; top: 0; left: 0; right: 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 30px 38px; pointer-events: none;">
     <div style="pointer-events: auto;">
-      <div style="font-family: var(--font-heading); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #5980a6;">Portfolio — index of work</div>
+      <div style="font-family: var(--font-heading); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #5980a6;">Alexander Gilbreath · Selected work</div>
       <h1 style="margin: 6px 0 4px; font-size: 46px; line-height: .96; letter-spacing: .01em; text-transform: uppercase; color: #eef3f8;">Alexander<br>Gilbreath</h1>
-      <div style="font-size: 13px; letter-spacing: .04em; color: rgba(233,238,243,.55); max-width: 30ch;">Projects filed by region. Hover the cortex, click to open.</div>
+      <div style="font-size: 13px; letter-spacing: .04em; color: rgba(233,238,243,.55); max-width: 30ch;">Engineering, AI, and ideas brought to life. Explore a region to discover my work.</div>
     </div>
     <div style="display: flex; align-items: center; gap: 26px; pointer-events: auto;">
       <nav style="display: flex; gap: 20px; font-family: var(--font-heading); font-size: 12px; letter-spacing: .16em; text-transform: uppercase;">
-        <a href="#spine-main">Spine</a>
+        <a href="#spine-main">Projects</a>
         <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=agilbreath@ucsd.edu" target="_blank" rel="noopener">Email</a>
         <a href="https://www.linkedin.com/in/alexander-gilbreath-250669352/" target="_blank" rel="noopener">LinkedIn</a>
       </nav>
@@ -118,7 +107,7 @@
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#cfe4f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 13l7 7 7-7"></path></svg>
   </a>
 
-  <div style="position: absolute; z-index: 5; left: 0; right: {{ readoutInset }}; bottom: 26px; display: flex; align-items: center; justify-content: center; padding: 0 38px; pointer-events: none; transition: right .34s cubic-bezier(.2,.7,.2,1);">
+  <div class="brain-readout" style="position: absolute; z-index: 5; left: 0; right: {{ readoutInset }}; bottom: 26px; display: flex; align-items: center; justify-content: center; padding: 0 38px; pointer-events: none; transition: right .34s cubic-bezier(.2,.7,.2,1);">
     <div style="position: absolute; left: 38px; bottom: 4px; font-family: var(--font-heading); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(157,194,224,.5); display: {{ captionDisplay }};">Fig. 01 — cerebrum, lateral aspect</div>
     <div style="flex: 0 0 auto; max-width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px;">
       <span style="flex: none; width: 46px; height: 1px; background: #5980a6; animation: pulseLine 2.6s ease-in-out infinite;"></span>
@@ -145,7 +134,7 @@
   </div>
 
   <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
-    <aside style="position: absolute; z-index: 6; top: 0; right: 0; height: 100%; width: min(440px, 44vw); display: flex; flex-direction: column; background: linear-gradient(90deg, rgba(11,14,17,.72) 0%, rgba(11,14,17,.94) 22%); border-left: 1px solid rgba(89,128,166,.42); backdrop-filter: blur(3px); animation: panelIn .34s cubic-bezier(.2,.7,.2,1) both;">
+    <aside class="detail-panel" style="position: absolute; z-index: 6; top: 0; right: 0; height: 100%; width: min(440px, 44vw); display: flex; flex-direction: column; background: linear-gradient(90deg, rgba(11,14,17,.72) 0%, rgba(11,14,17,.94) 22%); border-left: 1px solid rgba(89,128,166,.42); backdrop-filter: blur(3px); animation: panelIn .34s cubic-bezier(.2,.7,.2,1) both;">
       <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 28px 30px 18px; border-bottom: 1px solid rgba(89,128,166,.28);">
         <div>
           <div style="font-family: var(--font-heading); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: #5980a6;">{{ panelKicker }}</div>
@@ -498,39 +487,6 @@
 <span style="font-family: var(--font-heading); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; padding: 4px 9px; border: 1px solid rgba(89,128,166,.45); color: rgba(207,228,245,.9);">Live demo</span>
               </div>
               <a href="https://www.linkedin.com/company/openart-ai/" target="_blank" rel="noopener" style="font-family: var(--font-heading); font-size: 12px; letter-spacing: .16em; text-transform: uppercase;">OpenArt on LinkedIn ↗</a>
-            </article>
-          </div>
-        </sc-if>
-        <sc-if value="{{ isNote2 }}" hint-placeholder-val="{{ false }}">
-          <div style="display: flex; flex-direction: column; gap: 22px;">
-            <article class="blueprint" style="padding: 16px; background: transparent;">
-              <i class="corner tl" style="color: #5980a6"></i><i class="corner tr" style="color: #5980a6"></i><i class="corner bl" style="color: #5980a6"></i><i class="corner br" style="color: #5980a6"></i>
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="font-family: var(--font-heading); font-size: 9.5px; letter-spacing: .18em; text-transform: uppercase; padding: 3px 7px; background: #5980a6; color: #0b0e11;">Ambassador</span>
-                <span style="font-family: var(--font-heading); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #5980a6;">Current</span>
-              </div>
-              <h3 style="margin: 10px 0 3px; font-size: 24px; line-height: 1.04; text-transform: uppercase; color: #eef3f8;">Microsoft Learn Student Ambassador</h3>
-              <div style="font-size: 13.5px; color: rgba(233,238,243,.72);">Microsoft — AI &amp; machine learning</div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px 18px; margin: 16px 0 14px; padding: 14px 0; border-top: 1px solid rgba(89,128,166,.28); border-bottom: 1px solid rgba(89,128,166,.28);">
-              <div style="display: flex; flex-direction: column; gap: 3px;"><span style="font-family: var(--font-heading); font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: #5980a6;">Role</span><span style="font-size: 12.5px; color: rgba(233,238,243,.82);">Student ambassador</span></div>
-              <div style="display: flex; flex-direction: column; gap: 3px;"><span style="font-family: var(--font-heading); font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: #5980a6;">Focus</span><span style="font-size: 12.5px; color: rgba(233,238,243,.82);">AI / ML education</span></div>
-              <div style="display: flex; flex-direction: column; gap: 3px;"><span style="font-family: var(--font-heading); font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: #5980a6;">Program</span><span style="font-size: 12.5px; color: rgba(233,238,243,.82);">Microsoft Learn</span></div>
-              <div style="display: flex; flex-direction: column; gap: 3px;"><span style="font-family: var(--font-heading); font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: #5980a6;">Community</span><span style="font-size: 12.5px; color: rgba(233,238,243,.82);">Peer learners</span></div>
-              </div>
-              <p style="margin: 0 0 16px; font-size: 13.5px; line-height: 1.6; color: rgba(233,238,243,.66); text-wrap: pretty;">I take AI coursework to go deeper on how these systems actually work, then turn what I learn into courses and workshops that teach other students the fundamentals of AI and machine learning.</p>
-              <ul style="list-style: none; margin: 0 0 16px; padding: 0;">
-              <li style="display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 11px 0; border-top: 1px solid rgba(89,128,166,.22);"><span style="font-family: var(--font-heading); font-size: 11px; letter-spacing: .1em; color: #5980a6; padding-top: 2px;">01</span><span><span style="display: block; font-family: var(--font-heading); font-size: 13.5px; letter-spacing: .08em; text-transform: uppercase; color: #eef3f8;">Learn</span><span style="display: block; margin-top: 3px; font-size: 13px; line-height: 1.5; color: rgba(233,238,243,.62);">Work through AI and machine-learning coursework — models, training, evaluation, and where each approach fits.</span></span></li>
-              <li style="display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 11px 0; border-top: 1px solid rgba(89,128,166,.22);"><span style="font-family: var(--font-heading); font-size: 11px; letter-spacing: .1em; color: #5980a6; padding-top: 2px;">02</span><span><span style="display: block; font-family: var(--font-heading); font-size: 13.5px; letter-spacing: .08em; text-transform: uppercase; color: #eef3f8;">Teach</span><span style="display: block; margin-top: 3px; font-size: 13px; line-height: 1.5; color: rgba(233,238,243,.62);">Build and deliver my own courses and sessions that make AI and ML approachable for students new to the field.</span></span></li>
-              <li style="display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 11px 0; border-top: 1px solid rgba(89,128,166,.22);"><span style="font-family: var(--font-heading); font-size: 11px; letter-spacing: .1em; color: #5980a6; padding-top: 2px;">03</span><span><span style="display: block; font-family: var(--font-heading); font-size: 13.5px; letter-spacing: .08em; text-transform: uppercase; color: #eef3f8;">Community</span><span style="display: block; margin-top: 3px; font-size: 13px; line-height: 1.5; color: rgba(233,238,243,.62);">Grow a peer learning group on campus, sharing resources and running hands-on practice sessions.</span></span></li>
-              </ul>
-              <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px;">
-<span style="font-family: var(--font-heading); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; padding: 4px 9px; border: 1px solid rgba(89,128,166,.45); color: rgba(207,228,245,.9);">Artificial intelligence</span>
-<span style="font-family: var(--font-heading); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; padding: 4px 9px; border: 1px solid rgba(89,128,166,.45); color: rgba(207,228,245,.9);">Machine learning</span>
-<span style="font-family: var(--font-heading); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; padding: 4px 9px; border: 1px solid rgba(89,128,166,.45); color: rgba(207,228,245,.9);">Curriculum design</span>
-<span style="font-family: var(--font-heading); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; padding: 4px 9px; border: 1px solid rgba(89,128,166,.45); color: rgba(207,228,245,.9);">Technical teaching</span>
-<span style="font-family: var(--font-heading); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; padding: 4px 9px; border: 1px solid rgba(89,128,166,.45); color: rgba(207,228,245,.9);">Public speaking</span>
-              </div>
-              <a href="https://mvp.microsoft.com/studentambassadors" target="_blank" rel="noopener" style="font-family: var(--font-heading); font-size: 12px; letter-spacing: .16em; text-transform: uppercase;">About the program ↗</a>
             </article>
           </div>
         </sc-if>
@@ -971,7 +927,6 @@ const LABELS = {
 
 const PHOTOS = {
   award: { kicker: 'Highlight — award', label: 'OpenArt AI Hackathon', note: 'Winner, 2025 — generative AI.' },
-  note2: { kicker: 'Highlight — program', label: 'Microsoft Learn Ambassador', note: 'Studying AI, teaching AI.' },
   note3: { kicker: 'Highlight — venture', label: 'Tritons Thrift', note: 'Founder & operator, 2022 — present.' }
 };
 
@@ -1486,14 +1441,13 @@ class Component extends DCLogic {
     const readout = sel
       ? (LABELS[sel] || '').toUpperCase() + ' — SELECTED'
       : photo ? (p.label || '').toUpperCase()
-      : hover ? (LABELS[hover] || '').toUpperCase() : 'HOVER THE CORTEX';
+      : hover ? (LABELS[hover] || '').toUpperCase() : 'EXPLORE THE BRAIN';
     const brainVals = {
       readout,
       readoutInset: (sel || photo) ? 'min(440px, 44vw)' : '0px',
       captionDisplay: (sel || photo) ? 'none' : 'block',
       panelKicker: photo ? p.kicker : 'Region ' + String(ORDER.indexOf(sel) + 1).padStart(2, '0') + ' / 05',
       isAward: photo === 'award',
-      isNote2: photo === 'note2',
       isNote3: photo === 'note3',
       photoDisplay: (this.props.showPhotos ?? true) ? 'block' : 'none',
       hintOpacity: this.state.moved ? 0 : 1,
@@ -1509,7 +1463,6 @@ class Component extends DCLogic {
       active,
       close: this._close,
       openPhoto1: this._openPhoto('award'),
-      openPhoto2: this._openPhoto('note2'),
       openPhoto3: this._openPhoto('note3')
     };
 
